@@ -6,7 +6,6 @@ const nextConfig = {
     UNZIP_URL: process.env.UNZIP_URL,
   },
   images: {
-    domains: [`${process.env.IMG_URL}`],
     minimumCacheTTL: 60,
     remotePatterns: [
       {
