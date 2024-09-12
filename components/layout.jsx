@@ -4,6 +4,11 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 /* Component */
 import { WaveMaterial } from "@/components/WaveMaterial";
+import NavMobile from "@/components/navMobile";
+import WorkList from "@/components/workList";
+import EventList from "@/components/eventList";
+import ChapterIntro from "@/components/chapterIntro";
+import ExhibitionIntro from "@/components/exhibitionIntro";
 /* MUI */
 import {
   Box,
@@ -13,30 +18,68 @@ import {
   Typography,
   Tab,
   Tabs,
+  MenuList,
+  MenuItem,
 } from "@mui/material";
 import PropTypes from "prop-types";
 /* Next */
 import Link from "next/link";
+import Image from "next/image";
+/* Framer Motion */
+import { motion } from "framer-motion";
+import { line } from "framer-motion/client";
 
 /* Shader */
-function ShaderPlane() {
+function ShaderPlane({ mousePosition }) {
+  //   console.log(mousePosition);
   const ref = useRef();
+  const myMouseX = Math.sin(mousePosition.x * 0.001);
+  const myMouseY = Math.sin(mousePosition.y * 0.001);
+  const myMouse = { x: myMouseX, y: myMouseY };
   const { viewport, size } = useThree();
   useFrame((state, delta) => {
     ref.current.time += delta;
-    easing.damp3(ref.current.pointer, state.pointer, 0.2, delta);
+    // console.log(state.pointer);
+    // easing.damp3(ref.current.pointer, state.pointer, 0.2, delta);
+    easing.damp3(ref.current.pointer, myMouse, 0.2, delta);
   });
+
   return (
-    <mesh scale={[viewport.width, viewport.height, 1]}>
-      <planeGeometry />
-      <waveMaterial
-        ref={ref}
-        key={WaveMaterial.key}
-        resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
-      />
-    </mesh>
+    <>
+      <mesh scale={[viewport.width, viewport.height, 1]}>
+        <planeGeometry />
+        <waveMaterial
+          ref={ref}
+          key={WaveMaterial.key}
+          resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
+        />
+      </mesh>
+    </>
   );
 }
+
+// pass the current position to ShaderPlane()
+const useMousePosition = () => {
+  const [mousePosition, setMousePosition] = useState({
+    x: null,
+    y: null,
+  });
+
+  useEffect(() => {
+    const updateMousePosition = (ev) => {
+      setMousePosition({ x: ev.clientX, y: ev.clientY });
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+    };
+  }, []);
+  //   console.log(mousePosition);
+
+  return mousePosition;
+};
 
 /* Item */
 const Item = styled(Paper)(({ theme }) => ({
@@ -59,11 +102,7 @@ function TabPanel(props) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ pl: 0, pt: 1.5 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ pl: 0, pt: 0 }}>{children}</Box>}
     </div>
   );
 }
@@ -102,7 +141,9 @@ const StyledTab = styled((props) => <Tab {...props} />)(({ theme }) => ({
   textAlign: "left",
 }));
 
-export default function Layout({ children, useLang }) {
+export default function Layout({ children, useLang, setLang }) {
+  /* Mouse Position */
+  const mousePosition = useMousePosition();
   //console.log(useLang);
   /* Client fetch categories */
   const [catData, setCatData] = useState(null);
@@ -236,25 +277,26 @@ export default function Layout({ children, useLang }) {
     });
   }, []);
 
-  if (isLoadingCat) return <p>Loading...</p>;
-  if (!catData) return <p>No categories</p>;
-  if (isLoadingWork4) return <p>Loading...</p>;
-  if (!work4) return <p>No work4</p>;
-  if (isLoadingWork3) return <p>Loading...</p>;
-  if (!work3) return <p>No work3</p>;
-  if (isLoadingWork2) return <p>Loading...</p>;
-  if (!work2) return <p>No work2</p>;
-  if (isLoadingWork1) return <p>Loading...</p>;
-  if (!work1) return <p>No work1</p>;
-  if (isLoadingEvent) return <p>Loading...</p>;
-  if (!eventData) return <p>No events</p>;
+  if (isLoadingCat) return <div>Loading...</div>;
+  if (!catData) return <div>No categories</div>;
+  if (isLoadingWork4) return <div>Loading...</div>;
+  if (!work4) return <div>No work4</div>;
+  if (isLoadingWork3) return <div>Loading...</div>;
+  if (!work3) return <div>No work3</div>;
+  if (isLoadingWork2) return <div>Loading...</div>;
+  if (!work2) return <div>No work2</div>;
+  if (isLoadingWork1) return <div>Loading...</div>;
+  if (!work1) return <div>No work1</div>;
+  if (isLoadingEvent) return <div>Loading...</div>;
+  if (!eventData) return <div>No events</div>;
   //   console.log(eventData);
 
-  const myCat = catData.map((c) => {
+  const myCat = catData.map((c, idx) => {
     let result = {
       category_id: c.category_id,
       name_zh: c.name_zh,
       name_en: c.name_en,
+      id: idx - 1,
     };
     return result;
   });
@@ -266,7 +308,7 @@ export default function Layout({ children, useLang }) {
 
   return (
     <>
-      {/* Shader */}
+      {/* Background */}
       <Box
         sx={{
           position: "absolute",
@@ -276,23 +318,73 @@ export default function Layout({ children, useLang }) {
         }}
       >
         <Canvas>
-          <ShaderPlane />
+          <ShaderPlane mousePosition={mousePosition} />
         </Canvas>
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: 2,
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Image
+          priority={true}
+          src="/bg1.png"
+          fill
+          alt="Picture of the author"
+          style={{ objectFit: "cover" }}
+        />
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "none", md: "block" },
+          position: "absolute",
+          zIndex: 3,
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Image
+          priority={true}
+          src="/bg2_left.png"
+          fill
+          alt="Picture of the author"
+          style={{ objectFit: "cover", objectPosition: "left" }}
+        />
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "none", lg: "block" },
+          position: "absolute",
+          zIndex: 3,
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Image
+          priority={true}
+          src="/bg2_right.png"
+          fill
+          alt="Picture of the author"
+          style={{ objectFit: "cover", objectPosition: "right" }}
+        />
       </Box>
       {/* Desktop : 3 column | Mobile : 1 column */}
       <Box
         sx={{
           position: "absolute",
           zIndex: 999,
-          width: { xs: "100vw", sm: "calc(100% - 300px)" },
-          height: { xs: "100vh", sm: "70vh" },
+          width: { xs: "100vw", md: "calc(100% - 300px)" },
+          height: { xs: "100vh", md: "70vh" },
           //   bottom: "5vh",
-          bottom: { xs: "unset", sm: "5vh" },
-          left: { xs: "unset", sm: "150px" },
-          top: { xs: 0, sm: "unset" },
+          bottom: { xs: "unset", md: "5vh" },
+          left: { xs: "unset", md: "150px" },
+          top: { xs: 0, md: "unset" },
         }}
       >
-        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
           <Item
             sx={{
               width: "25%",
@@ -300,7 +392,7 @@ export default function Layout({ children, useLang }) {
               display: { xs: "none", md: "block" },
             }}
           >
-            <Box>
+            <Box pt={1}>
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -308,10 +400,13 @@ export default function Layout({ children, useLang }) {
                 onChange={handleChange}
                 aria-label="Vertical tabs example"
                 indicatorColor="none"
-                // sx={{ borderRight: 1, borderColor: "divider" }}
               >
                 <StyledTab
-                  label={useLang ? "策展論述" : "INTRODUCTION"}
+                  label={
+                    useLang
+                      ? "2024 Future Media FEST -- 奇異點 "
+                      : "2024 Future Media FEST -- Singularity"
+                  }
                   {...a11yProps(0)}
                 />
                 {filteredCat.map((c, idx) => (
@@ -337,143 +432,78 @@ export default function Layout({ children, useLang }) {
           >
             <Box sx={{ height: "100%", overflowY: "auto" }}>
               <TabPanel value={value} index={0}>
-                <Link href={`/intro`} as={`/intro`}>
-                  <Box>展覽簡介</Box>
-                </Link>
+                <MenuList>
+                  <ExhibitionIntro useLang={useLang} />
+                </MenuList>
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                  {useLang ? (
-                    <Box>{filteredCat[0].name_zh}</Box>
-                  ) : (
-                    <Box>{filteredCat[0].name_en}</Box>
-                  )}
-                </Box>
-                <Box>
-                  {work1.map((w1, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/works/${w1.work_id}`}
-                      as={`/works/${w1.work_id}`}
-                    >
-                      <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                        {useLang ? (
-                          <Box>{w1.work_zh.title}</Box>
-                        ) : (
-                          <Box>{w1.work_en.title}</Box>
-                        )}
-                      </Box>
-                    </Link>
-                  ))}
-                </Box>
+                <MenuList>
+                  <ChapterIntro
+                    useLang={useLang}
+                    filteredCat={filteredCat[0]}
+                  />
+                  <WorkList useLang={useLang} work={work1} />
+                </MenuList>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                  {useLang ? (
-                    <Box>{filteredCat[1].name_zh}</Box>
-                  ) : (
-                    <Box>{filteredCat[1].name_en}</Box>
-                  )}
-                </Box>
-                <Box>
-                  {work2.map((w2, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/works/${w2.work_id}`}
-                      as={`/works/${w2.work_id}`}
-                    >
-                      <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                        {useLang ? (
-                          <Box>{w2.work_zh.title}</Box>
-                        ) : (
-                          <Box>{w2.work_en.title}</Box>
-                        )}
-                      </Box>
-                    </Link>
-                  ))}
-                </Box>
+                <MenuList>
+                  <ChapterIntro
+                    useLang={useLang}
+                    filteredCat={filteredCat[1]}
+                  />
+                  <WorkList useLang={useLang} work={work2} />
+                </MenuList>
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                  {useLang ? (
-                    <Box>{filteredCat[2].name_zh}</Box>
-                  ) : (
-                    <Box>{filteredCat[2].name_en}</Box>
-                  )}
-                </Box>
-                <Box>
-                  {work3.map((w3, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/works/${w3.work_id}`}
-                      as={`/works/${w3.work_id}`}
-                    >
-                      <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                        {useLang ? (
-                          <Box>{w3.work_zh.title}</Box>
-                        ) : (
-                          <Box>{w3.work_en.title}</Box>
-                        )}
-                      </Box>
-                    </Link>
-                  ))}
-                </Box>
+                <MenuList>
+                  <ChapterIntro
+                    useLang={useLang}
+                    filteredCat={filteredCat[2]}
+                  />
+                  <WorkList useLang={useLang} work={work3} />
+                </MenuList>
               </TabPanel>
               <TabPanel value={value} index={4}>
-                <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                  {useLang ? (
-                    <Box>{filteredCat[3].name_zh}</Box>
-                  ) : (
-                    <Box>{filteredCat[3].name_en}</Box>
-                  )}
-                </Box>
-                <Box>
-                  {work4.map((w4, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/works/${w4.work_id}`}
-                      as={`/works/${w4.work_id}`}
-                    >
-                      <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                        {useLang ? (
-                          <Box>{w4.work_zh.title}</Box>
-                        ) : (
-                          <Box>{w4.work_en.title}</Box>
-                        )}
-                      </Box>
-                    </Link>
-                  ))}
-                </Box>
+                <MenuList>
+                  <ChapterIntro
+                    useLang={useLang}
+                    filteredCat={filteredCat[3]}
+                  />
+                  <WorkList useLang={useLang} work={work4} />
+                </MenuList>
               </TabPanel>
               <TabPanel value={value} index={5}>
-                <Box>
-                  {eventData.results.map((event, idx) => (
-                    <Link
-                      key={idx}
-                      href={`/events/${event.activity_id}`}
-                      as={`/events/${event.activity_id}`}
-                    >
-                      <Box pb={2} sx={{ lineHeight: 1.25 }}>
-                        {useLang ? (
-                          <Box>{event.title_zh}</Box>
-                        ) : (
-                          <Box>{event.title_en}</Box>
-                        )}
-                      </Box>
-                    </Link>
-                  ))}
-                </Box>
+                <MenuList>
+                  <EventList useLang={useLang} eventData={eventData} />
+                </MenuList>
               </TabPanel>
             </Box>
           </Item>
           <Item
             sx={{
-              width: { xs: "100%", sm: "50%" },
-              height: { xs: "100vh", sm: "70vh" },
+              width: { xs: "100%", md: "50%" },
+              height: { xs: "calc(100vh - 60px)", md: "70vh" },
+              position: { xs: "absolute", md: "relative" },
+              bottom: { xs: 0, md: "unset" },
             }}
           >
-            <Box>
+            <Box pt={2} pb={2} sx={{ height: "100%", overflowY: "auto" }}>
               <main>{children}</main>
+            </Box>
+          </Item>
+          <Item
+            sx={{
+              width: "100%",
+              height: 60,
+              display: { xs: "block", md: "none" },
+              borderBottom: "1px solid rgba(255, 255, 255, 0.7)",
+            }}
+          >
+            <Box
+              sx={{ position: "fixed", top: 20, left: 20, lineHeight: 1.25 }}
+            >
+              <Box component="span">2024 FMF -- </Box>
+              <Box component="span">{useLang ? "奇異點 " : "Singularity"}</Box>
             </Box>
           </Item>
         </Stack>
@@ -484,11 +514,20 @@ export default function Layout({ children, useLang }) {
           display: { xs: "block", md: "none" },
           position: "absolute",
           zIndex: 999,
-          top: 10,
+          top: 6,
           right: 10,
+          color: "white",
         }}
       >
-        nav
+        <NavMobile
+          useLang={useLang}
+          catData={catData}
+          work1={work1}
+          work2={work2}
+          work3={work3}
+          work4={work4}
+          eventData={eventData}
+        />
       </Box>
     </>
   );

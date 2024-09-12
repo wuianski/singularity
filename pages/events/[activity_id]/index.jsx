@@ -9,26 +9,10 @@ export default function Event({ useLang, data }) {
         {useLang ? (
           <>
             <Box>{data.title_zh}</Box>
-            {/* <Box component="span">
-              {data.artists &&
-                data.artists.map((artist, index) => (
-                  <Box key={index} component="span" mr={1}>
-                    {artist.artist_zh.name}
-                  </Box>
-                ))}
-            </Box> */}
           </>
         ) : (
           <>
             <Box>{data.title_en}</Box>
-            {/* <Box component="span">
-              {data.artists &&
-                data.artists.map((artist, index) => (
-                  <Box key={index} component="span" mr={1}>
-                    {artist.artist_en.name}
-                  </Box>
-                ))}
-            </Box> */}
           </>
         )}
       </Box>

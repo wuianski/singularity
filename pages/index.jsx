@@ -7,6 +7,7 @@ export default function Home({ data }) {
   return (
     <>
       <Box>front page</Box>
+      <Box>video</Box>
     </>
   );
 }

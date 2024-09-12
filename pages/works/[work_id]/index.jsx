@@ -35,7 +35,7 @@ export default function Snews({ useLang, data }) {
                 quality={90}
                 style={{
                   objectFit: "contain",
-                  objectPosition: "right",
+                  objectPosition: "left",
                 }}
                 sizes="(max-width: 768px) 50vw,  25vw"
               />
