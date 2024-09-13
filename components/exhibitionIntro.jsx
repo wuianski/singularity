@@ -11,41 +11,45 @@ export default function ExhibitionIntro({ useLang }) {
 
   return (
     <>
-      <Box>
-        <MenuItem>
-          <Link href={`/`} as={`/`}>
+      <Box sx={{ borderBottom: "1px solid #fff" }}>
+        <Link href={`/`} as={`/`}>
+          <MenuItem>
             <Box
-              pt={1.5}
-              pb={0.5}
               sx={{
                 lineHeight: 1.25,
                 whiteSpace: "normal",
-                color: "rgba(255,255,255,0.6)",
+                color: "#fff",
+                fontSize: "26px",
+                fontWeight: 600,
+                paddingTop: "30px",
+                paddingBottom: "18px",
               }}
               className={isActive(`/`) ? "active" : ""}
             >
               {useLang ? <Box>影片</Box> : <Box>Video</Box>}
             </Box>
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
       </Box>
-      <Box pb={2}>
-        <MenuItem>
-          <Link href={`/intro`} as={`/intro`}>
+      <Box sx={{ borderBottom: "1px solid #fff" }}>
+        <Link href={`/intro`} as={`/intro`}>
+          <MenuItem>
             <Box
-              pt={1.5}
-              pb={0.5}
               sx={{
                 lineHeight: 1.25,
                 whiteSpace: "normal",
-                color: "rgba(255,255,255,0.6)",
+                color: "#fff",
+                fontSize: "26px",
+                fontWeight: 600,
+                paddingTop: "30px",
+                paddingBottom: "18px",
               }}
               className={isActive(`/intro`) ? "active" : ""}
             >
               {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
             </Box>
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
       </Box>
     </>
   );

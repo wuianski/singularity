@@ -24,11 +24,12 @@ export default function NavMobile({
   eventData,
 }) {
   /* Orgnize categories */
-  const myCat = catData.map((c) => {
+  const myCat = catData.map((c, idx) => {
     let result = {
       category_id: c.category_id,
       name_zh: c.name_zh,
       name_en: c.name_en,
+      id: idx - 1,
     };
     return result;
   });
@@ -52,15 +53,17 @@ export default function NavMobile({
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton disabled={false}>
-            <ListItemText
-              primary={useLang ? <Box>影片</Box> : <Box>Video</Box>}
-            />
+          <ListItemButton>
+            <Link href={`/`} as={`/`}>
+              {useLang ? <Box>影片</Box> : <Box>Video</Box>}
+            </Link>
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton disabled={false}>
-            {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
+          <ListItemButton>
+            <Link href={`/intro`} as={`/intro`}>
+              {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
+            </Link>
           </ListItemButton>
         </ListItem>
       </List>
@@ -68,23 +71,30 @@ export default function NavMobile({
       <List>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemText
-              primary={
-                useLang ? (
-                  <Box>{filteredCat[0].name_zh}</Box>
-                ) : (
-                  <Box>{filteredCat[0].name_en}</Box>
-                )
-              }
-            />
+            <Link
+              href={`/chapters/${filteredCat[0].id}`}
+              as={`/chapters/${filteredCat[0].id}`}
+            >
+              <ListItemText
+                primary={
+                  useLang ? (
+                    <Box>{filteredCat[0].name_zh}</Box>
+                  ) : (
+                    <Box>{filteredCat[0].name_en}</Box>
+                  )
+                }
+              />
+            </Link>
           </ListItemButton>
         </ListItem>
         {work1.map((w1, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText
-                primary={useLang ? w1.work_zh.title : w1.work_en.title}
-              />
+              <Link href={`/works/${w1.work_id}`} as={`/works/${w1.work_id}`}>
+                <ListItemText
+                  primary={useLang ? w1.work_zh.title : w1.work_en.title}
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -93,23 +103,30 @@ export default function NavMobile({
       <List>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemText
-              primary={
-                useLang ? (
-                  <Box>{filteredCat[1].name_zh}</Box>
-                ) : (
-                  <Box>{filteredCat[1].name_en}</Box>
-                )
-              }
-            />
+            <Link
+              href={`/chapters/${filteredCat[1].id}`}
+              as={`/chapters/${filteredCat[1].id}`}
+            >
+              <ListItemText
+                primary={
+                  useLang ? (
+                    <Box>{filteredCat[1].name_zh}</Box>
+                  ) : (
+                    <Box>{filteredCat[1].name_en}</Box>
+                  )
+                }
+              />
+            </Link>
           </ListItemButton>
         </ListItem>
         {work2.map((w2, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText
-                primary={useLang ? w2.work_zh.title : w2.work_en.title}
-              />
+              <Link href={`/works/${w2.work_id}`} as={`/works/${w2.work_id}`}>
+                <ListItemText
+                  primary={useLang ? w2.work_zh.title : w2.work_en.title}
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -118,23 +135,30 @@ export default function NavMobile({
       <List>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemText
-              primary={
-                useLang ? (
-                  <Box>{filteredCat[2].name_zh}</Box>
-                ) : (
-                  <Box>{filteredCat[2].name_en}</Box>
-                )
-              }
-            />
+            <Link
+              href={`/chapters/${filteredCat[2].id}`}
+              as={`/chapters/${filteredCat[2].id}`}
+            >
+              <ListItemText
+                primary={
+                  useLang ? (
+                    <Box>{filteredCat[2].name_zh}</Box>
+                  ) : (
+                    <Box>{filteredCat[2].name_en}</Box>
+                  )
+                }
+              />
+            </Link>
           </ListItemButton>
         </ListItem>
         {work3.map((w3, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText
-                primary={useLang ? w3.work_zh.title : w3.work_en.title}
-              />
+              <Link href={`/works/${w3.work_id}`} as={`/works/${w3.work_id}`}>
+                <ListItemText
+                  primary={useLang ? w3.work_zh.title : w3.work_en.title}
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -143,23 +167,30 @@ export default function NavMobile({
       <List>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemText
-              primary={
-                useLang ? (
-                  <Box>{filteredCat[3].name_zh}</Box>
-                ) : (
-                  <Box>{filteredCat[3].name_en}</Box>
-                )
-              }
-            />
+            <Link
+              href={`/chapters/${filteredCat[3].id}`}
+              as={`/chapters/${filteredCat[3].id}`}
+            >
+              <ListItemText
+                primary={
+                  useLang ? (
+                    <Box>{filteredCat[3].name_zh}</Box>
+                  ) : (
+                    <Box>{filteredCat[3].name_en}</Box>
+                  )
+                }
+              />
+            </Link>
           </ListItemButton>
         </ListItem>
         {work4.map((w4, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText
-                primary={useLang ? w4.work_zh.title : w4.work_en.title}
-              />
+              <Link href={`/works/${w4.work_id}`} as={`/works/${w4.work_id}`}>
+                <ListItemText
+                  primary={useLang ? w4.work_zh.title : w4.work_en.title}
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -169,9 +200,14 @@ export default function NavMobile({
         {eventData.results.map((event, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText
-                primary={useLang ? event.title_zh : event.title_en}
-              />
+              <Link
+                href={`/events/${event.activity_id}`}
+                as={`/events/${event.activity_id}`}
+              >
+                <ListItemText
+                  primary={useLang ? event.title_zh : event.title_en}
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}

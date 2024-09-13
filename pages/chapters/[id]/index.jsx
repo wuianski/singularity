@@ -45,13 +45,21 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box>{chapterIntroText[0].title_zh}</Box>
-              <Box>{chapterIntroText[0].content_zh}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[0].title_zh}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[0].content_zh}
+              </Box>
             </Box>
           ) : (
             <Box>
-              <Box>{chapterIntroText[0].title_en}</Box>
-              <Box>{chapterIntroText[0].content_en}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[0].title_en}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[0].content_en}
+              </Box>
             </Box>
           )}
         </Box>
@@ -59,13 +67,21 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box>{chapterIntroText[1].title_zh}</Box>
-              <Box>{chapterIntroText[1].content_zh}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[1].title_zh}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[1].content_zh}
+              </Box>
             </Box>
           ) : (
             <Box>
-              <Box>{chapterIntroText[1].title_en}</Box>
-              <Box>{chapterIntroText[1].content_en}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[1].title_en}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[1].content_en}
+              </Box>
             </Box>
           )}
         </Box>
@@ -73,13 +89,21 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box>{chapterIntroText[2].title_zh}</Box>
-              <Box>{chapterIntroText[2].content_zh}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[2].title_zh}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[2].content_zh}
+              </Box>
             </Box>
           ) : (
             <Box>
-              <Box>{chapterIntroText[2].title_en}</Box>
-              <Box>{chapterIntroText[2].content_en}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[2].title_en}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[2].content_en}
+              </Box>
             </Box>
           )}
         </Box>
@@ -87,13 +111,21 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box>{chapterIntroText[3].title_zh}</Box>
-              <Box>{chapterIntroText[3].content_zh}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[3].title_zh}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[3].content_zh}
+              </Box>
             </Box>
           ) : (
             <Box>
-              <Box>{chapterIntroText[3].title_en}</Box>
-              <Box>{chapterIntroText[3].content_en}</Box>
+              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+                {chapterIntroText[3].title_en}
+              </Box>
+              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+                {chapterIntroText[3].content_en}
+              </Box>
             </Box>
           )}
         </Box>

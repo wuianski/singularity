@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 /* MUI */
 import { Box, MenuItem } from "@mui/material";
 
-export default function eventList({ useLang, eventData }) {
+export default function WventList({ useLang, eventData }) {
   // console.log(eventData);
   const router = useRouter();
   const isActive = (href) => router.asPath === href;
@@ -12,32 +12,31 @@ export default function eventList({ useLang, eventData }) {
   return (
     <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
       {eventData.results.map((event, idx) => (
-        <Box key={idx}>
-          <MenuItem>
-            <Link
-              href={`/events/${event.activity_id}`}
-              as={`/events/${event.activity_id}`}
-            >
+        <Box key={idx} sx={{ borderBottom: "1px solid #fff" }}>
+          <Link
+            href={`/events/${event.activity_id}`}
+            as={`/events/${event.activity_id}`}
+          >
+            <MenuItem>
               <Box
-                pt={1.5}
-                pb={0.5}
                 sx={{
                   lineHeight: 1.25,
                   whiteSpace: "normal",
-                  color: "rgba(255,255,255,0.6)",
+                  color: "#fff",
+                  fontSize: "26px",
+                  fontWeight: 600,
+                  paddingTop: "30px",
+                  paddingBottom: "18px",
+                  letterSpacing: "-0.01em",
                 }}
                 className={
                   isActive(`/events/${event.activity_id}`) ? "active" : ""
                 }
               >
-                {useLang ? (
-                  <Box>{event.title_zh}</Box>
-                ) : (
-                  <Box>{event.title_en}</Box>
-                )}
+                {useLang ? event.title_zh : event.title_en}
               </Box>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         </Box>
       ))}
     </Box>

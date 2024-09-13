@@ -9,6 +9,7 @@ import WorkList from "@/components/workList";
 import EventList from "@/components/eventList";
 import ChapterIntro from "@/components/chapterIntro";
 import ExhibitionIntro from "@/components/exhibitionIntro";
+import Background from "@/components/background";
 /* MUI */
 import {
   Box,
@@ -123,22 +124,26 @@ function a11yProps(index) {
 /* StyledTab */
 const StyledTab = styled((props) => <Tab {...props} />)(({ theme }) => ({
   textTransform: "none",
-  fontWeight: theme.typography.fontWeightRegular,
-  fontSize: "1rem",
-  //   marginRight: theme.spacing(1),
-  color: "rgba(255, 255, 255, 0.7)",
+  // fontWeight: theme.typography.fontWeightRegular,
+  fontSize: "26px",
+  fontWeight: 600,
+  color: "#fff",
   "&.Mui-selected": {
-    color: "#fff",
+    color: "#FF2E00",
   },
   //   "&.Mui-focusVisible": {
   //     backgroundColor: "rgba(100, 95, 228, 0.32)",
   //   },
   alignItems: "flex-start",
-  paddingBottom: "4px",
   paddingLeft: "0px",
   paddingRight: "0px",
   minHeight: "unset",
   textAlign: "left",
+  borderBottom: "1px solid #fff",
+  paddingTop: "30px",
+  paddingBottom: "18px",
+  margin: 0,
+  letterSpacing: "-0.01em",
 }));
 
 export default function Layout({ children, useLang, setLang }) {
@@ -308,7 +313,7 @@ export default function Layout({ children, useLang, setLang }) {
 
   return (
     <>
-      {/* Background */}
+      {/* Background Shader */}
       <Box
         sx={{
           position: "absolute",
@@ -321,66 +326,19 @@ export default function Layout({ children, useLang, setLang }) {
           <ShaderPlane mousePosition={mousePosition} />
         </Canvas>
       </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          zIndex: 2,
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <Image
-          priority={true}
-          src="/bg1.png"
-          fill
-          alt="Picture of the author"
-          style={{ objectFit: "cover" }}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", md: "block" },
-          position: "absolute",
-          zIndex: 3,
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <Image
-          priority={true}
-          src="/bg2_left.png"
-          fill
-          alt="Picture of the author"
-          style={{ objectFit: "cover", objectPosition: "left" }}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", lg: "block" },
-          position: "absolute",
-          zIndex: 3,
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <Image
-          priority={true}
-          src="/bg2_right.png"
-          fill
-          alt="Picture of the author"
-          style={{ objectFit: "cover", objectPosition: "right" }}
-        />
-      </Box>
+
+      {/* Background Image + Text */}
+      <Background />
+
       {/* Desktop : 3 column | Mobile : 1 column */}
       <Box
         sx={{
           position: "absolute",
           zIndex: 999,
-          width: { xs: "100vw", md: "calc(100% - 300px)" },
+          width: { xs: "100vw", md: "calc(100% - 240px)" },
           height: { xs: "100vh", md: "70vh" },
-          //   bottom: "5vh",
           bottom: { xs: "unset", md: "5vh" },
-          left: { xs: "unset", md: "150px" },
+          left: { xs: "unset", md: "130px" },
           top: { xs: 0, md: "unset" },
         }}
       >
@@ -392,7 +350,12 @@ export default function Layout({ children, useLang, setLang }) {
               display: { xs: "none", md: "block" },
             }}
           >
-            <Box pt={1}>
+            <Box
+              pt={4}
+              pl={1}
+              pr={1}
+              sx={{ height: "100%", overflowY: "auto" }}
+            >
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -430,52 +393,33 @@ export default function Layout({ children, useLang, setLang }) {
               display: { xs: "none", md: "block" },
             }}
           >
-            <Box sx={{ height: "100%", overflowY: "auto" }}>
+            <Box
+              pt={4}
+              pl={1}
+              pr={1}
+              sx={{ height: "100%", overflowY: "auto" }}
+            >
               <TabPanel value={value} index={0}>
-                <MenuList>
-                  <ExhibitionIntro useLang={useLang} />
-                </MenuList>
+                <ExhibitionIntro useLang={useLang} />
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <MenuList>
-                  <ChapterIntro
-                    useLang={useLang}
-                    filteredCat={filteredCat[0]}
-                  />
-                  <WorkList useLang={useLang} work={work1} />
-                </MenuList>
+                <ChapterIntro useLang={useLang} filteredCat={filteredCat[0]} />
+                <WorkList useLang={useLang} work={work1} />
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <MenuList>
-                  <ChapterIntro
-                    useLang={useLang}
-                    filteredCat={filteredCat[1]}
-                  />
-                  <WorkList useLang={useLang} work={work2} />
-                </MenuList>
+                <ChapterIntro useLang={useLang} filteredCat={filteredCat[1]} />
+                <WorkList useLang={useLang} work={work2} />
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <MenuList>
-                  <ChapterIntro
-                    useLang={useLang}
-                    filteredCat={filteredCat[2]}
-                  />
-                  <WorkList useLang={useLang} work={work3} />
-                </MenuList>
+                <ChapterIntro useLang={useLang} filteredCat={filteredCat[2]} />
+                <WorkList useLang={useLang} work={work3} />
               </TabPanel>
               <TabPanel value={value} index={4}>
-                <MenuList>
-                  <ChapterIntro
-                    useLang={useLang}
-                    filteredCat={filteredCat[3]}
-                  />
-                  <WorkList useLang={useLang} work={work4} />
-                </MenuList>
+                <ChapterIntro useLang={useLang} filteredCat={filteredCat[3]} />
+                <WorkList useLang={useLang} work={work4} />
               </TabPanel>
               <TabPanel value={value} index={5}>
-                <MenuList>
-                  <EventList useLang={useLang} eventData={eventData} />
-                </MenuList>
+                <EventList useLang={useLang} eventData={eventData} />
               </TabPanel>
             </Box>
           </Item>
@@ -487,10 +431,18 @@ export default function Layout({ children, useLang, setLang }) {
               bottom: { xs: 0, md: "unset" },
             }}
           >
-            <Box pt={2} pb={2} sx={{ height: "100%", overflowY: "auto" }}>
-              <main>{children}</main>
+            <Box
+              pt={4}
+              pl={1}
+              pr={1}
+              sx={{ height: "100%", overflowY: "auto" }}
+            >
+              <main>
+                <Box pt={4}>{children}</Box>
+              </main>
             </Box>
           </Item>
+          {/* Mobile : Site Title */}
           <Item
             sx={{
               width: "100%",

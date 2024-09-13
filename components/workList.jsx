@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 /* MUI */
 import { Box, MenuItem } from "@mui/material";
 
-export default function workList({ useLang, work }) {
+export default function WorkList({ useLang, work }) {
   // console.log(filteredCat);
   const router = useRouter();
   const isActive = (href) => router.asPath === href;
@@ -12,27 +12,26 @@ export default function workList({ useLang, work }) {
   return (
     <Box>
       {work.map((w, idx) => (
-        <Box key={idx}>
-          <MenuItem>
-            <Link href={`/works/${w.work_id}`} as={`/works/${w.work_id}`}>
+        <Box key={idx} sx={{ borderBottom: "1px solid #fff" }}>
+          <Link href={`/works/${w.work_id}`} as={`/works/${w.work_id}`}>
+            <MenuItem>
               <Box
-                pt={1.5}
-                pb={0.5}
                 sx={{
                   lineHeight: 1.25,
                   whiteSpace: "normal",
-                  color: "rgba(255,255,255,0.6)",
+                  color: "#fff",
+                  fontSize: "26px",
+                  fontWeight: 600,
+                  paddingTop: "30px",
+                  paddingBottom: "18px",
+                  letterSpacing: "-0.01em",
                 }}
                 className={isActive(`/works/${w.work_id}`) ? "active" : ""}
               >
-                {useLang ? (
-                  <Box>{w.work_zh.title}</Box>
-                ) : (
-                  <Box>{w.work_en.title}</Box>
-                )}
+                {useLang ? w.work_zh.title : w.work_en.title}
               </Box>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         </Box>
       ))}
     </Box>
