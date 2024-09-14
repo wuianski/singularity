@@ -429,17 +429,16 @@ export default function Layout({ children, useLang, setLang }) {
               height: { xs: "calc(100vh - 60px)", md: "70vh" },
               position: { xs: "absolute", md: "relative" },
               bottom: { xs: 0, md: "unset" },
+              padding: 0,
             }}
           >
             <Box
-              pt={4}
-              pl={1}
-              pr={1}
-              sx={{ height: "100%", overflowY: "auto" }}
+              // pt={4}
+              // pl={1}
+              // pr={1}
+              sx={{ width: "100%", height: "100%", overflowY: "auto" }}
             >
-              <main>
-                <Box pt={4}>{children}</Box>
-              </main>
+              <main>{children}</main>
             </Box>
           </Item>
           {/* Mobile : Site Title */}
