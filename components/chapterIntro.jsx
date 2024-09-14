@@ -15,7 +15,10 @@ export default function ChapterIntro({ useLang, filteredCat }) {
         href={`/chapters/${filteredCat.id}`}
         as={`/chapters/${filteredCat.id}`}
       >
-        <MenuItem>
+        <MenuItem
+          disableGutters={true}
+          sx={{ paddingTop: 0, paddingBottom: 0 }}
+        >
           <Box
             sx={{
               lineHeight: 1.25,

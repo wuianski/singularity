@@ -17,7 +17,10 @@ export default function WventList({ useLang, eventData }) {
             href={`/events/${event.activity_id}`}
             as={`/events/${event.activity_id}`}
           >
-            <MenuItem>
+            <MenuItem
+              disableGutters={true}
+              sx={{ paddingTop: 0, paddingBottom: 0 }}
+            >
               <Box
                 sx={{
                   lineHeight: 1.25,

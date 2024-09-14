@@ -27,8 +27,12 @@ a {
   color:#FF2E00;
 }
 
-.MuiMenuItem-root{
-  padding: 0 ;
-}
+/* li .MuiMenuItem-root{
+  padding: 0 !important;
+} */
+
+/* .myMenu{
+  padding: 0 !important;
+} */
 
 

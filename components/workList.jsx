@@ -14,7 +14,10 @@ export default function WorkList({ useLang, work }) {
       {work.map((w, idx) => (
         <Box key={idx} sx={{ borderBottom: "1px solid #fff" }}>
           <Link href={`/works/${w.work_id}`} as={`/works/${w.work_id}`}>
-            <MenuItem>
+            <MenuItem
+              disableGutters={true}
+              sx={{ paddingTop: 0, paddingBottom: 0 }}
+            >
               <Box
                 sx={{
                   lineHeight: 1.25,

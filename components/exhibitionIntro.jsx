@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 /* MUI */
 import { Box, MenuItem } from "@mui/material";
+import { Padding } from "@mui/icons-material";
 
 export default function ExhibitionIntro({ useLang }) {
   // console.log(eventData);
@@ -13,7 +14,10 @@ export default function ExhibitionIntro({ useLang }) {
     <>
       <Box sx={{ borderBottom: "1px solid #fff" }}>
         <Link href={`/`} as={`/`}>
-          <MenuItem>
+          <MenuItem
+            disableGutters={true}
+            sx={{ paddingTop: 0, paddingBottom: 0 }}
+          >
             <Box
               sx={{
                 lineHeight: 1.25,
@@ -24,7 +28,7 @@ export default function ExhibitionIntro({ useLang }) {
                 paddingTop: "30px",
                 paddingBottom: "18px",
               }}
-              className={isActive(`/`) ? "active" : ""}
+              className={isActive(`/`) ? "active " : ""}
             >
               {useLang ? <Box>影片</Box> : <Box>Video</Box>}
             </Box>
@@ -33,7 +37,10 @@ export default function ExhibitionIntro({ useLang }) {
       </Box>
       <Box sx={{ borderBottom: "1px solid #fff" }}>
         <Link href={`/intro`} as={`/intro`}>
-          <MenuItem>
+          <MenuItem
+            disableGutters={true}
+            sx={{ paddingTop: 0, paddingBottom: 0 }}
+          >
             <Box
               sx={{
                 lineHeight: 1.25,
