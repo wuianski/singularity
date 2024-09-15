@@ -1,7 +1,18 @@
-import { Box } from "@mui/material";
+/* MUI */
+import { Box, Paper, Stack, styled } from "@mui/material";
 /* Fetch data */
 import { UNZIP_API } from "@/lib/api";
 import { useRouter } from "next/router";
+
+/* Item */
+const Item = styled(Paper)(({ theme }) => ({
+  borderRadius: 0,
+  color: "rgba(220, 220, 220, 1)",
+  backgroundColor: "rgba(0, 0, 0, 0.0)",
+  // padding: theme.spacing(1),
+  paddingLeft: theme.spacing(1),
+  marginTop: "0 !important",
+}));
 
 const chapterIntroText = [
   {
@@ -40,46 +51,209 @@ export default function Chapter({ useLang }) {
   //   console.log(id);
 
   return (
-    <>
+    <Box pt={8} pl={2} pr={2}>
       {id === "1" ? (
-        <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
-          {useLang ? (
-            <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+        <>
+          <Box sx={{ whiteSpace: "normal", lineHeight: 1.56 }}>
+            {useLang ? (
+              <Box>
+                {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[0].title_zh}
+              </Box> */}
+                <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
+                  {chapterIntroText[0].content_zh}
+                </Box>
               </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
-                {chapterIntroText[0].content_zh}
-              </Box>
-            </Box>
-          ) : (
-            <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+            ) : (
+              <Box>
+                {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[0].title_en}
+              </Box> */}
+                <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
+                  {chapterIntroText[0].content_en}
+                </Box>
               </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
-                {chapterIntroText[0].content_en}
+            )}
+          </Box>
+          {/* 研究內容 */}
+
+          <Box
+            pt={2}
+            sx={{
+              lineHeight: 1.56,
+              whiteSpace: "normal",
+              borderTop: "solid 1px #fff",
+            }}
+          >
+            {useLang ? (
+              <Box pb={2} sx={{ fontSize: 16 }}>
+                <Box pb={2}>
+                  關於 AI
+                  發展的歷史分期有諸多說法,但大多起始於第二次世界大戰之後。 1956
+                  年, 約 翰. 麥 卡 錫(John MCCARTHY) 在 達 特 茅 斯 學
+                  院(Dartmouth College)的一場會議上提出「Artificial
+                  Intelligence」一詞,標誌著 AI 研究的 誕生。1960 年代,早期 AI 如
+                  ELIZA 模擬心理治療師對話,展現了 AI 的潛力。 但到了 1970
+                  年代,由於技術限制和資金減少,進入了所謂的「AI 寒冬」。
+                </Box>
+                <Box pb={2}>
+                  隨 著 IBM 的 深 藍 超 級 電 腦 在 1997 年 擊 敗 西 洋 棋 冠 軍
+                  卡 斯 巴 洛 夫(Garry KASPAROV),AI 又回到大眾的視野;2010
+                  年代,深度學習技術推動了 AI 的巨 大進步,2016 年 AlphaGo
+                  擊敗圍棋世界冠軍李世乭,標誌著深度學習的成熟。 進入 2020
+                  年代,AI 技術在自然語言處理和圖像生成方面取得重大突破,誕生了
+                  大型語言模型如 GPT-3。生成式人工智慧 GAI(Generative
+                  AI)則可生成逼真的 圖像、影片和音樂等文本,GAI
+                  有望在更多領域發揮作用,從創意產業到科學研
+                  究,繼續改變我們的生活和工作方式。
+                </Box>
+                <Box pb={2}>
+                  在本次計畫中,我們重點轉譯了科學研究與技術史的龐大內容,以關鍵的技術突
+                  破與相關事件為核心,在各個時期從「AI
+                  發展」(軟體與演算法為主)、「世
+                  界史」(例如繪圖晶片量產、戰爭等事件)與「文化與藝術」(包括文學、藝術、
+                  大眾文化中的 AI 形象)三個層面平行呈現在不同階段 AI
+                  演進同時的全球政治經
+                  濟與文化狀態,邀請觀眾從自己較為熟悉的面向找到閱讀的入口。
+                </Box>
               </Box>
+            ) : (
+              <Box pb={2} sx={{ fontSize: 16 }}>
+                <Box pb={2}>
+                  There are many different accounts of the history of AI
+                  development, but most agree that it began after World War II.
+                  In 1956, John MCCARTHY coined the term "Artificial
+                  Intelligence" at a conference at Dartmouth College, marking
+                  the birth of AI research. In the 1960s, early AI like ELIZA,
+                  which simulated a psychotherapist's conversation, demonstrated
+                  the potential of AI. However, in the 1970s, due to
+                  technological limitations and reduced funding, AI entered a
+                  period known as the "AI Winter."
+                </Box>
+                <Box pb={2}>
+                  With IBM's Deep Blue supercomputer defeating chess champion
+                  Garry KASPAROV in 1997, AI returned to the public eye. In the
+                  2010s, deep learning technology drove significant progress in
+                  AI. In 2016, AlphaGo defeated Go world champion LEE Sedol,
+                  marking the maturity of deep learning. Entering the 2020s, AI
+                  technology has made significant breakthroughs in natural
+                  language processing and image generation, giving rise to large
+                  language models like GPT-3. Generative AI (GAI) can generate
+                  realistic images, videos, music, and other text. GAI is
+                  expected to play a role in more fields, from creative
+                  industries to scientific research, continuing to change the
+                  way we live and work.
+                </Box>
+                <Box pb={2}>
+                  In this project, we have translated extensive scientific
+                  research and technological history, focusing on key
+                  technological breakthroughs and related events. We present the
+                  evolution of AI in parallel with the global political,
+                  economic, and cultural state during each period, from three
+                  perspectives: "AI Development" (primarily software and
+                  algorithms), "World History" (including mass production of
+                  graphics chips, wars, etc.), and "Culture and Art" (involving
+                  AI imagery in literature, art, and popular culture). We invite
+                  viewers to discover a starting point for exploration based on
+                  their familiarity with these aspects.
+                </Box>
+              </Box>
+            )}
+          </Box>
+          {/* 研究團隊 */}
+          <Box
+            pt={3}
+            pb={8}
+            sx={{
+              lineHeight: 1.25,
+              whiteSpace: "normal",
+              borderTop: "solid 1px #fff",
+            }}
+          >
+            <Box
+              pl={1}
+              mb={2}
+              sx={{
+                fontSize: 14,
+                fontWeight: 400,
+                borderLeft: "1px solid #fff",
+              }}
+            >
+              <Box> {useLang ? "研究團隊" : "Research Team"}</Box>
             </Box>
-          )}
-        </Box>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
+              <Item
+                sx={{
+                  width: { xs: "100%", md: "20%" },
+                  fontSize: 20,
+                  fontWeight: 600,
+                  borderLeft: "1px solid #fff",
+                  marginBottom: { xs: 2, md: "unset" },
+                }}
+              >
+                <Box> {useLang ? "自牧文化" : "ZIMU CULTURE"}</Box>
+              </Item>
+              <Item
+                sx={{
+                  width: { xs: "100%", md: "20%" },
+                  fontSize: 14,
+                  fontWeight: 400,
+                  borderLeft: "1px solid #fff",
+                  marginBottom: { xs: 2, md: "unset" },
+                }}
+              >
+                <Box> {useLang ? "臺灣" : "Taiwan"}</Box>
+              </Item>
+              <Item
+                sx={{
+                  width: "60%",
+                  fontSize: 14,
+                  fontWeight: 400,
+                  borderLeft: "1px solid #fff",
+                  lineHeight: 1.4,
+                }}
+              >
+                <Box mb={2}>
+                  {useLang ? (
+                    <Box>
+                      自牧文化創立於 2022
+                      年,關注數位時代的文化研究、影像理論與藝術創作。致
+                      力於譯介、製作相關的出版與展覽等多型態計畫。本次研究計畫由獨立策展人李
+                      佳霖與藝術家/研究者蔡侑霖共同執行。
+                    </Box>
+                  ) : (
+                    <Box>
+                      ZIMU CULTURE was established in 2022, with a focus on
+                      cultural studies, image theory, and artistic creation in
+                      the digital age, dedicating to translating, producing, and
+                      curating various forms of projects such as publications
+                      and exhibitions. This research project is being carried
+                      out by independent curator Angie Chia-Lin LEE and artist/
+                      researcher Eric TSAI.
+                    </Box>
+                  )}
+                </Box>
+              </Item>
+            </Stack>
+          </Box>
+        </>
       ) : id === "2" ? (
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[1].title_zh}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[1].content_zh}
               </Box>
             </Box>
           ) : (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[1].title_en}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[1].content_en}
               </Box>
             </Box>
@@ -89,19 +263,19 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[2].title_zh}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[2].content_zh}
               </Box>
             </Box>
           ) : (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[2].title_en}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[2].content_en}
               </Box>
             </Box>
@@ -111,25 +285,25 @@ export default function Chapter({ useLang }) {
         <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>
           {useLang ? (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[3].title_zh}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[3].content_zh}
               </Box>
             </Box>
           ) : (
             <Box>
-              <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
+              {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
                 {chapterIntroText[3].title_en}
-              </Box>
-              <Box pb={2} sx={{ fontSize: 16, fontWeight: 500 }}>
+              </Box> */}
+              <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                 {chapterIntroText[3].content_en}
               </Box>
             </Box>
           )}
         </Box>
       ) : null}
-    </>
+    </Box>
   );
 }

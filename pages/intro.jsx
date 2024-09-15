@@ -4,8 +4,8 @@ import { UNZIP_API } from "@/lib/api";
 export default function Intro({ useLang, data }) {
   //   console.log(data);
   return (
-    <>
-      <Box sx={{ lineHeight: 1.56, color: "#fff", fontWeight: 500 }}>
+    <Box pt={5.5}>
+      <Box p={2} sx={{ lineHeight: 1.56, color: "#fff", fontWeight: 500 }}>
         {useLang ? (
           <>
             <Box pb={3} sx={{ fontSize: 36, fontWeight: 600 }}>
@@ -221,7 +221,7 @@ export default function Intro({ useLang, data }) {
           </>
         )}
       </Box>
-    </>
+    </Box>
   );
 }
 

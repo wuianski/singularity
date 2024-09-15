@@ -38,7 +38,7 @@ export default function Background() {
           src="/bg2_left.png"
           fill
           alt="Picture of the author"
-          style={{ objectFit: "cover", objectPosition: "left" }}
+          style={{ objectFit: "cover", objectPosition: "top left" }}
         />
       </Box>
       {/* Background Image Text Right */}
@@ -56,7 +56,7 @@ export default function Background() {
           src="/bg2_right.png"
           fill
           alt="Picture of the author"
-          style={{ objectFit: "cover", objectPosition: "right" }}
+          style={{ objectFit: "cover", objectPosition: "top right" }}
         />
       </Box>
     </>

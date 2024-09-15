@@ -13,7 +13,8 @@ const Item = styled(Paper)(({ theme }) => ({
   borderRadius: 0,
   color: "rgba(220, 220, 220, 1)",
   backgroundColor: "rgba(0, 0, 0, 0.0)",
-  padding: theme.spacing(1),
+  // padding: theme.spacing(1),
+  paddingLeft: theme.spacing(1),
   marginTop: "0 !important",
 }));
 
@@ -120,9 +121,9 @@ export default function Work({ useLang, data }) {
               <Box
                 sx={{
                   backgroundColor: "none",
-                  width: { xs: "100%", md: "100%" },
-                  height: { xs: 200, md: "22vw" },
                   position: "relative",
+                  width: "100%",
+                  height: { xs: 200, md: "22vw" },
                 }}
               >
                 {src.image && (
@@ -131,12 +132,12 @@ export default function Work({ useLang, data }) {
                     // src={loaded[idx] ? src.image : ""}
                     src={src.image ? src.image : ""}
                     alt="Picture of the artwork"
-                    quality={90}
+                    // quality={90}
                     style={{
                       objectFit: "cover",
                       objectPosition: "center",
                     }}
-                    sizes="(max-width: 768px) 50vw,  25vw"
+                    sizes="(max-width: 768px) 50vw,  50vw"
                   />
                 )}
               </Box>
@@ -154,8 +155,8 @@ export default function Work({ useLang, data }) {
                     borderBottom: "1px solid #fff",
                     fontSize: 14,
                   }}
-                  pt={1}
-                  pl={1}
+                  pt={{ xs: 0, md: 1 }}
+                  pl={2}
                   pb={0.5}
                 >
                   {useLang ? (
@@ -188,25 +189,27 @@ export default function Work({ useLang, data }) {
         </div>
       </Box>
       {/* artwork info */}
-      <Box p={1} sx={{ fontSize: 14, fontWeight: 400 }}>
+      <Box p={2} sx={{ fontSize: 14, fontWeight: 400 }}>
         <Box pt={6} pb={3}>
           <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
             <Item
               sx={{
-                width: "25%",
+                width: { xs: "100%", md: "25%" },
                 borderLeft: "1px solid #fff",
                 fontSize: 20,
                 fontWeight: 600,
+                marginBottom: { xs: 2, md: "unset" },
               }}
             >
               {useLang ? data.work_zh.title : data.work_en.title}
             </Item>
             <Item
               sx={{
-                width: "25%",
+                width: { xs: "100%", md: "25%" },
                 borderLeft: "1px solid #fff",
                 fontSize: 20,
                 fontWeight: 600,
+                marginBottom: { xs: 2, md: "unset" },
               }}
             >
               <Box component="span">
@@ -218,7 +221,13 @@ export default function Work({ useLang, data }) {
                   ))}
               </Box>
             </Item>
-            <Item sx={{ width: "25%", borderLeft: ".5px solid #fff" }}>
+            <Item
+              sx={{
+                width: { xs: "100%", md: "25%" },
+                borderLeft: ".5px solid #fff",
+                marginBottom: { xs: 2, md: "unset" },
+              }}
+            >
               <Box>{new Date(data.year).getFullYear()}</Box>
               <Box component="span">
                 {data.materials &&
@@ -232,7 +241,7 @@ export default function Work({ useLang, data }) {
             </Item>
             <Item
               sx={{
-                width: "25%",
+                width: { xs: "100%", md: "25%" },
                 borderLeft: ".5px solid #FF2E00",
                 color: "#FF2E00",
               }}
@@ -243,7 +252,7 @@ export default function Work({ useLang, data }) {
         </Box>
       </Box>
       {/* artwork main text + artist intro */}
-      <Box p={1} sx={{ fontSize: 14, fontWeight: 400 }}>
+      <Box p={2} sx={{ fontSize: 14, fontWeight: 400 }}>
         <Box
           pb={6}
           sx={{

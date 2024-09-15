@@ -2,11 +2,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #fff;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,6 +27,7 @@ a {
 .active{
   color:#FF2E00;
 }
+
 /* Keen Slider lazy loading */
 .lazy__slide {
   height: min-content;
@@ -40,6 +42,7 @@ a {
   background-repeat: no-repeat;
   background-size: 100px;
   min-height: auto;
+  width:100%;
 }
 
 .lazy__slide img {
@@ -60,6 +63,11 @@ a {
   fill: #fff;
   cursor: pointer;
 }
+@media screen and (max-width: 680px) {
+  .arrow{
+    top: 100px;
+  }
+}
 
 .arrow--left {
   left: 5px;
@@ -74,4 +82,19 @@ a {
   fill: rgba(255, 255, 255, 0.5);
 }
 
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: #fff3;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff3;
+}
 

@@ -28,7 +28,6 @@ import Link from "next/link";
 import Image from "next/image";
 /* Framer Motion */
 import { motion } from "framer-motion";
-import { line } from "framer-motion/client";
 
 /* Shader */
 function ShaderPlane({ mousePosition }) {
@@ -311,154 +310,233 @@ export default function Layout({ children, useLang, setLang }) {
   );
   //   console.log(filteredCat);
 
+  const variantEvents = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 1.2,
+        duration: 0.2,
+      },
+    },
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+    },
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: custom * 1.2, duration: 1 },
+    }),
+  };
+
+  const bg = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: (custom) => ({
+      opacity: 1,
+      transition: { type: "spring", delay: custom * 0.2, duration: 0.4 },
+    }),
+  };
+
   return (
     <>
       {/* Background Shader */}
-      <Box
-        sx={{
-          position: "absolute",
-          zIndex: 1,
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <Canvas>
-          <ShaderPlane mousePosition={mousePosition} />
-        </Canvas>
-      </Box>
+      <motion.div custom={0} variants={bg} initial="hidden" animate="visible">
+        <Box
+          sx={{
+            position: "absolute",
+            zIndex: 1,
+            width: "100vw",
+            height: "100vh",
+          }}
+        >
+          <Canvas>
+            <ShaderPlane mousePosition={mousePosition} />
+          </Canvas>
+        </Box>
+      </motion.div>
 
       {/* Background Image + Text */}
-      <Background />
+      <motion.div custom={1} variants={bg} initial="hidden" animate="visible">
+        <Background />
+      </motion.div>
 
       {/* Desktop : 3 column | Mobile : 1 column */}
       <Box
         sx={{
           position: "absolute",
           zIndex: 999,
-          width: { xs: "100vw", md: "calc(100% - 240px)" },
+          width: { xs: "100vw", md: "calc(100% - 230px)" },
           height: { xs: "100vh", md: "70vh" },
           bottom: { xs: "unset", md: "5vh" },
           left: { xs: "unset", md: "130px" },
           top: { xs: 0, md: "unset" },
         }}
       >
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <Item
-            sx={{
-              width: "25%",
-              height: "70vh",
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            <Box
-              pt={4}
-              pl={1}
-              pr={1}
-              sx={{ height: "100%", overflowY: "auto" }}
+        <motion.div variants={variantEvents} initial="hidden" animate="visible">
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <motion.div
+              custom={0}
+              variants={variants}
+              initial="hidden"
+              animate="visible"
             >
-              <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="Vertical tabs example"
-                indicatorColor="none"
+              <Item
+                sx={{
+                  width: "22vw",
+                  height: "70vh",
+                  display: { xs: "none", md: "block" },
+                }}
               >
-                <StyledTab
-                  label={
-                    useLang
-                      ? "2024 Future Media FEST -- 奇異點 "
-                      : "2024 Future Media FEST -- Singularity"
-                  }
-                  {...a11yProps(0)}
-                />
-                {filteredCat.map((c, idx) => (
-                  <StyledTab
-                    label={useLang ? c.name_zh : c.name_en}
-                    {...a11yProps(idx + 1)}
-                    key={c.category_id}
-                  />
-                ))}
-                <StyledTab
-                  label={useLang ? "公眾活動" : "EVENTS"}
-                  {...a11yProps(5)}
-                />
-              </Tabs>
-            </Box>
-          </Item>
-          <Item
-            sx={{
-              width: "25%",
-              height: "70vh",
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            <Box
-              pt={4}
-              pl={1}
-              pr={1}
-              sx={{ height: "100%", overflowY: "auto" }}
+                <Box
+                  pt={4}
+                  pl={1}
+                  pr={1}
+                  sx={{ height: "100%", overflowY: "auto" }}
+                >
+                  <Tabs
+                    orientation="vertical"
+                    variant="scrollable"
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="Vertical tabs example"
+                    indicatorColor="none"
+                  >
+                    <StyledTab
+                      label={
+                        useLang
+                          ? "2024 Future Media FEST -- 奇異點 "
+                          : "2024 Future Media FEST -- Singularity"
+                      }
+                      {...a11yProps(0)}
+                    />
+                    {filteredCat.map((c, idx) => (
+                      <StyledTab
+                        label={useLang ? c.name_zh : c.name_en}
+                        {...a11yProps(idx + 1)}
+                        key={c.category_id}
+                      />
+                    ))}
+                    <StyledTab
+                      label={useLang ? "公眾活動" : "EVENTS"}
+                      {...a11yProps(5)}
+                    />
+                  </Tabs>
+                </Box>
+              </Item>
+            </motion.div>
+            <motion.div
+              custom={1}
+              variants={variants}
+              initial="hidden"
+              animate="visible"
             >
-              <TabPanel value={value} index={0}>
-                <ExhibitionIntro useLang={useLang} />
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <ChapterIntro useLang={useLang} filteredCat={filteredCat[0]} />
-                <WorkList useLang={useLang} work={work1} />
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <ChapterIntro useLang={useLang} filteredCat={filteredCat[1]} />
-                <WorkList useLang={useLang} work={work2} />
-              </TabPanel>
-              <TabPanel value={value} index={3}>
-                <ChapterIntro useLang={useLang} filteredCat={filteredCat[2]} />
-                <WorkList useLang={useLang} work={work3} />
-              </TabPanel>
-              <TabPanel value={value} index={4}>
-                <ChapterIntro useLang={useLang} filteredCat={filteredCat[3]} />
-                <WorkList useLang={useLang} work={work4} />
-              </TabPanel>
-              <TabPanel value={value} index={5}>
-                <EventList useLang={useLang} eventData={eventData} />
-              </TabPanel>
-            </Box>
-          </Item>
-          <Item
-            sx={{
-              width: { xs: "100%", md: "50%" },
-              height: { xs: "calc(100vh - 60px)", md: "70vh" },
-              position: { xs: "absolute", md: "relative" },
-              bottom: { xs: 0, md: "unset" },
-              padding: 0,
-            }}
-          >
-            <Box
-              // pt={4}
-              // pl={1}
-              // pr={1}
-              sx={{ width: "100%", height: "100%", overflowY: "auto" }}
+              <Item
+                sx={{
+                  width: "22vw",
+                  height: "70vh",
+                  display: { xs: "none", md: "block" },
+                }}
+              >
+                <Box
+                  pt={4}
+                  pl={1}
+                  pr={1}
+                  sx={{ height: "100%", overflowY: "auto" }}
+                >
+                  <TabPanel value={value} index={0}>
+                    <ExhibitionIntro useLang={useLang} />
+                  </TabPanel>
+                  <TabPanel value={value} index={1}>
+                    <ChapterIntro
+                      useLang={useLang}
+                      filteredCat={filteredCat[0]}
+                    />
+                    <WorkList useLang={useLang} work={work1} />
+                  </TabPanel>
+                  <TabPanel value={value} index={2}>
+                    <ChapterIntro
+                      useLang={useLang}
+                      filteredCat={filteredCat[1]}
+                    />
+                    <WorkList useLang={useLang} work={work2} />
+                  </TabPanel>
+                  <TabPanel value={value} index={3}>
+                    <ChapterIntro
+                      useLang={useLang}
+                      filteredCat={filteredCat[2]}
+                    />
+                    <WorkList useLang={useLang} work={work3} />
+                  </TabPanel>
+                  <TabPanel value={value} index={4}>
+                    <ChapterIntro
+                      useLang={useLang}
+                      filteredCat={filteredCat[3]}
+                    />
+                    <WorkList useLang={useLang} work={work4} />
+                  </TabPanel>
+                  <TabPanel value={value} index={5}>
+                    <EventList useLang={useLang} eventData={eventData} />
+                  </TabPanel>
+                </Box>
+              </Item>
+            </motion.div>
+            <motion.div
+              custom={2}
+              variants={variants}
+              initial="hidden"
+              animate="visible"
             >
-              <main>{children}</main>
-            </Box>
-          </Item>
-          {/* Mobile : Site Title */}
-          <Item
-            sx={{
-              width: "100%",
-              height: 60,
-              display: { xs: "block", md: "none" },
-              borderBottom: "1px solid rgba(255, 255, 255, 0.7)",
-            }}
-          >
-            <Box
-              sx={{ position: "fixed", top: 20, left: 20, lineHeight: 1.25 }}
+              <Item
+                sx={{
+                  width: { xs: "100%", md: "38vw" },
+                  height: { xs: "calc(100vh - 60px)", md: "70vh" },
+                  position: { xs: "absolute", md: "relative" },
+                  bottom: { xs: 0, md: "unset" },
+                  padding: 0,
+                }}
+              >
+                <Box
+                  // pt={4}
+                  // pl={1}
+                  // pr={1}
+                  sx={{ width: "100%", height: "100%", overflowY: "auto" }}
+                >
+                  <main>{children}</main>
+                </Box>
+              </Item>
+            </motion.div>
+            {/* Mobile : Site Title */}
+            <Item
+              sx={{
+                width: "100%",
+                height: 60,
+                display: { xs: "block", md: "none" },
+                borderBottom: "1px solid rgba(255, 255, 255, 0.7)",
+              }}
             >
-              <Box component="span">2024 FMF -- </Box>
-              <Box component="span">{useLang ? "奇異點 " : "Singularity"}</Box>
-            </Box>
-          </Item>
-        </Stack>
+              <Box
+                sx={{ position: "fixed", top: 20, left: 20, lineHeight: 1.25 }}
+              >
+                <Box component="span">2024 FMF -- </Box>
+                <Box component="span">
+                  {useLang ? "奇異點 " : "Singularity"}
+                </Box>
+              </Box>
+            </Item>
+          </Stack>
+        </motion.div>
       </Box>
+
       {/* Mobile : Nav */}
       <Box
         sx={{
