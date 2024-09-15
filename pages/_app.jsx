@@ -26,7 +26,7 @@ export default function App({ Component, pageProps, router }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           duration={0.6}
-          transition={{ delay: 1.6 }}
+          transition={{ delay: 0.6 }}
         >
           <Box
             sx={{
