@@ -8,6 +8,7 @@ export default function WventList({ useLang, eventData }) {
   // console.log(eventData);
   const router = useRouter();
   const isActive = (href) => router.asPath === href;
+  // console.log(eventData);
 
   return (
     <Box sx={{ lineHeight: 1.25, whiteSpace: "normal" }}>

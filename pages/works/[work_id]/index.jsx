@@ -142,7 +142,7 @@ export default function Work({ useLang, data }) {
                 )}
               </Box>
 
-              {src.image && (
+              {src.image && src.description_zh && src.description_en && (
                 <Box
                   sx={{
                     position: "relative",
@@ -152,7 +152,7 @@ export default function Work({ useLang, data }) {
                     backgroundColor: "#000",
                     width: "100%",
                     height: 50,
-                    borderBottom: "1px solid #fff",
+                    // borderBottom: "1px solid #fff",
                     fontSize: 14,
                   }}
                   pt={{ xs: 0, md: 1 }}
@@ -189,7 +189,10 @@ export default function Work({ useLang, data }) {
         </div>
       </Box>
       {/* artwork info */}
-      <Box p={2} sx={{ fontSize: 14, fontWeight: 400 }}>
+      <Box
+        p={2}
+        sx={{ fontSize: 14, fontWeight: 400, borderTop: "1px solid #fff" }}
+      >
         <Box pt={6} pb={3}>
           <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
             <Item

@@ -7,6 +7,7 @@ import { WaveMaterial } from "@/components/WaveMaterial";
 import NavMobile from "@/components/navMobile";
 import WorkList from "@/components/workList";
 import EventList from "@/components/eventList";
+import EventCatList from "@/components/eventCatLIst";
 import ChapterIntro from "@/components/chapterIntro";
 import ExhibitionIntro from "@/components/exhibitionIntro";
 import Background from "@/components/background";
@@ -173,6 +174,19 @@ export default function Layout({ children, useLang, setLang }) {
   const [eventData, setEventData] = useState(null);
   const [isLoadingEvent, setLoadingEvent] = useState(true);
 
+  /* Client fetch event1 */
+  const [event1, setEvent1] = useState(null);
+  const [isLoadingEvent1, setLoadingEvent1] = useState(true);
+  /* Client fetch event2 */
+  const [event2, setEvent2] = useState(null);
+  const [isLoadingEvent2, setLoadingEvent2] = useState(true);
+  /* Client fetch event3 */
+  const [event3, setEvent3] = useState(null);
+  const [isLoadingEvent3, setLoadingEvent3] = useState(true);
+  /* Client fetch event4 */
+  const [event4, setEvent4] = useState(null);
+  const [isLoadingEvent4, setLoadingEvent4] = useState(true);
+
   useEffect(() => {
     /* Client fetch categories */
     const fetchCat = async () => {
@@ -265,7 +279,7 @@ export default function Layout({ children, useLang, setLang }) {
     /* Client fetch events */
     const fetchEvents = async () => {
       const response = await fetch(
-        `${process.env.UNZIP_URL}/schedules/5/activities?page=0&limit=25`
+        `${process.env.UNZIP_URL}/schedules/5/activities?page=0&limit=0`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -276,6 +290,78 @@ export default function Layout({ children, useLang, setLang }) {
     };
 
     fetchEvents().catch((e) => {
+      // handle the error as needed
+      console.error("An error occurred while fetching the data: ", e);
+    });
+
+    /* Client fetch event1 */
+    const fetchEvent1 = async () => {
+      const response = await fetch(
+        `${process.env.UNZIP_URL}/activities?category=藝術家座談`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setEvent1(result);
+      setLoadingEvent1(false);
+    };
+
+    fetchEvent1().catch((e) => {
+      // handle the error as needed
+      console.error("An error occurred while fetching the data: ", e);
+    });
+
+    /* Client fetch event2 */
+    const fetchEvent2 = async () => {
+      const response = await fetch(
+        `${process.env.UNZIP_URL}/activities?category=講座`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setEvent2(result);
+      setLoadingEvent2(false);
+    };
+
+    fetchEvent2().catch((e) => {
+      // handle the error as needed
+      console.error("An error occurred while fetching the data: ", e);
+    });
+
+    /* Client fetch event3 */
+    const fetchEvent3 = async () => {
+      const response = await fetch(
+        `${process.env.UNZIP_URL}/activities?category=工作坊`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setEvent3(result);
+      setLoadingEvent3(false);
+    };
+
+    fetchEvent3().catch((e) => {
+      // handle the error as needed
+      console.error("An error occurred while fetching the data: ", e);
+    });
+
+    /* Client fetch event4 */
+    const fetchEvent4 = async () => {
+      const response = await fetch(
+        `${process.env.UNZIP_URL}/activities?category=導覽`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setEvent4(result);
+      setLoadingEvent4(false);
+    };
+
+    fetchEvent4().catch((e) => {
       // handle the error as needed
       console.error("An error occurred while fetching the data: ", e);
     });
@@ -486,6 +572,13 @@ export default function Layout({ children, useLang, setLang }) {
                   </TabPanel>
                   <TabPanel value={value} index={5}>
                     <EventList useLang={useLang} eventData={eventData} />
+                    {/* <EventCatList
+                      useLang={useLang}
+                      event1={event1}
+                      event2={event2}
+                      event3={event3}
+                      event4={event4}
+                    /> */}
                   </TabPanel>
                 </Box>
               </Item>
@@ -522,6 +615,9 @@ export default function Layout({ children, useLang, setLang }) {
                 height: 60,
                 display: { xs: "block", md: "none" },
                 borderBottom: "1px solid rgba(255, 255, 255, 0.7)",
+                // backgroundColor: "rgba(0, 255, 0, 0.9)",
+                position: "fixed",
+                top: 0,
               }}
             >
               <Box

@@ -55,17 +55,18 @@ export default function NavMobile({
         <ListItem disablePadding>
           <ListItemButton>
             <Link href={`/`} as={`/`}>
-              {useLang ? <Box>影片</Box> : <Box>Video</Box>}
+              {/* {useLang ? <Box>影片</Box> : <Box>Video</Box>} */}
+              {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
             </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        {/* <ListItem disablePadding>
           <ListItemButton>
             <Link href={`/intro`} as={`/intro`}>
               {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
             </Link>
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
       <List>

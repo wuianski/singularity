@@ -30,12 +30,13 @@ export default function ExhibitionIntro({ useLang }) {
               }}
               className={isActive(`/`) ? "active " : ""}
             >
-              {useLang ? <Box>影片</Box> : <Box>Video</Box>}
+              {/* {useLang ? <Box>影片</Box> : <Box>Video</Box>} */}
+              {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}
             </Box>
           </MenuItem>
         </Link>
       </Box>
-      <Box sx={{ borderBottom: "1px solid #fff" }}>
+      {/* <Box sx={{ borderBottom: "1px solid #fff" }}>
         <Link href={`/intro`} as={`/intro`}>
           <MenuItem
             disableGutters={true}
@@ -57,7 +58,7 @@ export default function ExhibitionIntro({ useLang }) {
             </Box>
           </MenuItem>
         </Link>
-      </Box>
+      </Box> */}
     </>
   );
 }

@@ -98,3 +98,7 @@ a {
   background: #fff3;
 }
 
+ .MuiMenuItem-root.Mui-disabled{
+  opacity: 1;
+ }
+
