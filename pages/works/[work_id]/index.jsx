@@ -8,6 +8,8 @@ import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
+import { useRouter } from "next/router";
+
 /* Item */
 const Item = styled(Paper)(({ theme }) => ({
   borderRadius: 0,
@@ -40,6 +42,8 @@ function Arrow(props) {
 }
 
 export default function Work({ useLang, data }) {
+  const router = useRouter();
+  // console.log(router.query.work_id);
   const images = [
     {
       image: data.photo_1
@@ -105,11 +109,11 @@ export default function Work({ useLang, data }) {
     },
   });
 
-  // useEffect(() => {
-  //   const new_loaded = [...loaded];
-  //   new_loaded[currentSlide] = true;
-  //   setLoaded(new_loaded);
-  // }, [currentSlide]);
+  // console.log(currentSlide);
+
+  useEffect(() => {
+    instanceRef.current?.moveToIdx(0);
+  }, [router]);
 
   return (
     <>
@@ -197,7 +201,7 @@ export default function Work({ useLang, data }) {
           <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
             <Item
               sx={{
-                width: { xs: "100%", md: "25%" },
+                width: { xs: "100%", md: "50%" },
                 borderLeft: "1px solid #fff",
                 fontSize: 20,
                 fontWeight: 600,
@@ -208,7 +212,7 @@ export default function Work({ useLang, data }) {
             </Item>
             <Item
               sx={{
-                width: { xs: "100%", md: "25%" },
+                width: { xs: "100%", md: "50%" },
                 borderLeft: "1px solid #fff",
                 fontSize: 20,
                 fontWeight: 600,
@@ -224,34 +228,38 @@ export default function Work({ useLang, data }) {
                   ))}
               </Box>
             </Item>
-            <Item
-              sx={{
-                width: { xs: "100%", md: "25%" },
-                borderLeft: ".5px solid #fff",
-                marginBottom: { xs: 2, md: "unset" },
-              }}
-            >
-              <Box>{new Date(data.year).getFullYear()}</Box>
-              <Box component="span">
-                {data.materials &&
-                  data.materials.map((material, index) => (
-                    <Box key={index} mr={1}>
-                      {useLang ? material.name_zh : material.name_en}
-                    </Box>
-                  ))}
-              </Box>
-              <Box> {data.work_en.dimension}</Box>
-            </Item>
-            <Item
-              sx={{
-                width: { xs: "100%", md: "25%" },
-                borderLeft: ".5px solid #FF2E00",
-                color: "#FF2E00",
-              }}
-            >
-              {useLang ? data.location.name_zh : data.location.name_en}
-            </Item>
           </Stack>
+          <Box pt={{ xs: 0, md: 3 }} pb={0}>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
+              <Item
+                sx={{
+                  width: { xs: "100%", md: "50%" },
+                  borderLeft: ".5px solid #fff",
+                  marginBottom: { xs: 2, md: "unset" },
+                }}
+              >
+                <Box>{new Date(data.year).getFullYear()}</Box>
+                <Box component="span">
+                  {data.materials &&
+                    data.materials.map((material, index) => (
+                      <Box key={index} mr={1}>
+                        {useLang ? material.name_zh : material.name_en}
+                      </Box>
+                    ))}
+                </Box>
+                <Box> {data.work_en.dimension}</Box>
+              </Item>
+              <Item
+                sx={{
+                  width: { xs: "100%", md: "50%" },
+                  borderLeft: ".5px solid #FF2E00",
+                  color: "#FF2E00",
+                }}
+              >
+                {useLang ? data.location.name_zh : data.location.name_en}
+              </Item>
+            </Stack>
+          </Box>
         </Box>
       </Box>
       {/* artwork main text + artist intro */}
@@ -290,10 +298,15 @@ export default function Work({ useLang, data }) {
           <Box>
             {data.artists &&
               data.artists.map((artist, index) => (
-                <Box key={index} mr={1}>
-                  {useLang
-                    ? artist.artist_zh.introduction
-                    : artist.artist_en.introduction}
+                <Box key={index} mr={1} pb={1}>
+                  <Box pb={1}>
+                    {useLang ? artist.artist_zh.name : artist.artist_en.name}
+                  </Box>
+                  <Box>
+                    {useLang
+                      ? artist.artist_zh.introduction
+                      : artist.artist_en.introduction}
+                  </Box>
                 </Box>
               ))}
           </Box>

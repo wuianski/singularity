@@ -9,6 +9,7 @@ import WorkList from "@/components/workList";
 import EventList from "@/components/eventList";
 import EventCatList from "@/components/eventCatLIst";
 import ChapterIntro from "@/components/chapterIntro";
+import ChapterIntro1 from "@/components/chapterIntro_1";
 import ExhibitionIntro from "@/components/exhibitionIntro";
 import Background from "@/components/background";
 /* MUI */
@@ -249,6 +250,10 @@ export default function Layout({ children, useLang, setLang }) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
+      // sort
+      result.sort((a, b) => {
+        return new Date(a.work_zh.work_zh_id) - new Date(b.work_zh.work_zh_id);
+      });
       setWork3(result);
       setLoadingWork3(false);
     };
@@ -257,6 +262,11 @@ export default function Layout({ children, useLang, setLang }) {
       // handle the error as needed
       console.error("An error occurred while fetching the data: ", e);
     });
+
+    // // sort
+    // fetchWork3.sort((a, b) => {
+    //   return new Date(a.work_zh.work_zh_id) - new Date(b.work_zh.work_zh_id);
+    // });
 
     /* Client fetch work4 */
     const fetchWork4 = async () => {
@@ -267,6 +277,10 @@ export default function Layout({ children, useLang, setLang }) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
+      // sort
+      result.sort((a, b) => {
+        return new Date(a.work_zh.work_zh_id) - new Date(b.work_zh.work_zh_id);
+      });
       setWork4(result);
       setLoadingWork4(false);
     };
@@ -500,8 +514,8 @@ export default function Layout({ children, useLang, setLang }) {
                     <StyledTab
                       label={
                         useLang
-                          ? "2024 Future Media FEST -- 奇異點 "
-                          : "2024 Future Media FEST -- Singularity"
+                          ? "2024未來媒體藝術節──奇異點"
+                          : "2024 Future Media FEST-Singularity"
                       }
                       {...a11yProps(0)}
                     />
@@ -513,7 +527,7 @@ export default function Layout({ children, useLang, setLang }) {
                       />
                     ))}
                     <StyledTab
-                      label={useLang ? "公眾活動" : "EVENTS"}
+                      label={useLang ? "公眾活動" : "Events"}
                       {...a11yProps(5)}
                     />
                   </Tabs>
@@ -543,7 +557,7 @@ export default function Layout({ children, useLang, setLang }) {
                     <ExhibitionIntro useLang={useLang} />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <ChapterIntro
+                    <ChapterIntro1
                       useLang={useLang}
                       filteredCat={filteredCat[0]}
                     />

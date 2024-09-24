@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Event({ useLang, data }) {
-  //   console.log(data);
+  console.log(data.start_date);
   const dayNames = ["Sun.", "Mon.", "Tue.", "Wed.", "Thur.", "Fri.", "Sat."];
 
   return (
@@ -27,26 +27,7 @@ export default function Event({ useLang, data }) {
                 <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
                   <Item
                     sx={{
-                      width: "33%",
-                      fontSize: 26,
-                      fontWeight: 600,
-                      color: "#FF2E00",
-                    }}
-                  >
-                    <Box>
-                      {(new Date(as.start_time).getMonth() + 1)
-                        .toString()
-                        .padStart(2, "0")}
-                      /
-                      {new Date(as.start_time)
-                        .getDate()
-                        .toString()
-                        .padStart(2, "0")}
-                    </Box>
-                  </Item>
-                  <Item
-                    sx={{
-                      width: "33%",
+                      width: "30%",
                       fontSize: 26,
                       fontWeight: 600,
                       color: "#FF2E00",
@@ -56,7 +37,41 @@ export default function Event({ useLang, data }) {
                   </Item>
                   <Item
                     sx={{
-                      width: { xs: "100%", md: "33%" },
+                      width: "35%",
+                      fontSize: 26,
+                      fontWeight: 600,
+                      color: "#FF2E00",
+                    }}
+                  >
+                    <Box component="span">
+                      {(new Date(as.start_time).getMonth() + 1)
+                        .toString()
+                        .padStart(2, "0")}
+                      /
+                      {new Date(as.start_time)
+                        .getDate()
+                        .toString()
+                        .padStart(2, "0")}
+                    </Box>
+                    {data.title_zh == "團體導覽預約" ? (
+                      <Box component="span">
+                        -
+                        {(new Date(data.start_date).getMonth() + 1)
+                          .toString()
+                          .padStart(2, "0")}
+                        /
+                        {(new Date(data.end_date).getMonth() + 1)
+                          .toString()
+                          .padStart(2, "0")}
+                      </Box>
+                    ) : (
+                      ""
+                    )}
+                  </Item>
+
+                  <Item
+                    sx={{
+                      width: { xs: "100%", md: "35%" },
                       fontSize: 26,
                       fontWeight: 600,
                       color: "#FF2E00",

@@ -1,8 +1,5 @@
-/* Next */
-import Link from "next/link";
-import { useRouter } from "next/router";
 /* MUI */
-import { Box, MenuItem } from "@mui/material";
+import { Box } from "@mui/material";
 
 const chapterIntroText = [
   {
@@ -36,56 +33,33 @@ const chapterIntroText = [
 ];
 
 export default function ChapterIntro({ useLang, filteredCat }) {
-  //   console.log(filteredCat.id);
-  const router = useRouter();
-  const isActive = (href) => router.asPath === href;
-
   return (
     <Box sx={{ borderBottom: "1px solid #fff" }}>
-      {/* <Link
-        href={`/chapters/${filteredCat.id}`}
-        as={`/chapters/${filteredCat.id}`}
-      > */}
-      <MenuItem
-        disableGutters={true}
-        sx={{ paddingTop: 0, paddingBottom: 0 }}
-        disabled={true}
+      <Box
+        sx={{
+          lineHeight: 1.25,
+          whiteSpace: "normal",
+          color: "#fff",
+          fontSize: "26px",
+          fontWeight: 600,
+          paddingTop: "30px",
+          paddingBottom: "18px",
+        }}
       >
-        <Box
-          sx={{
-            lineHeight: 1.25,
-            whiteSpace: "normal",
-            color: "#fff",
-            fontSize: "26px",
-            fontWeight: 600,
-            paddingTop: "30px",
-            paddingBottom: "18px",
-          }}
-          // className={isActive(`/chapters/${filteredCat.id}`) ? "active" : ""}
-        >
-          {/* {useLang ? "章節介紹" : "Chapter Introduction"} */}
-          {filteredCat.id === 1
-            ? useLang
-              ? chapterIntroText[0].content_zh
-              : chapterIntroText[0].content_en
-            : filteredCat.id === 2
-            ? useLang
-              ? chapterIntroText[1].content_zh
-              : chapterIntroText[1].content_en
-            : filteredCat.id === 3
-            ? useLang
-              ? chapterIntroText[2].content_zh
-              : chapterIntroText[2].content_en
-            : filteredCat.id === 4
-            ? useLang
-              ? chapterIntroText[3].content_zh
-              : chapterIntroText[3].content_en
-            : useLang
-            ? chapterIntroText[0].content_zh
-            : chapterIntroText[0].content_en}
-        </Box>
-      </MenuItem>
-      {/* </Link> */}
+        {filteredCat.id === 2
+          ? useLang
+            ? chapterIntroText[1].content_zh
+            : chapterIntroText[1].content_en
+          : filteredCat.id === 3
+          ? useLang
+            ? chapterIntroText[2].content_zh
+            : chapterIntroText[2].content_en
+          : filteredCat.id === 4
+          ? useLang
+            ? chapterIntroText[3].content_zh
+            : chapterIntroText[3].content_en
+          : useLang}
+      </Box>
     </Box>
   );
 }

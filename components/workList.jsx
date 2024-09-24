@@ -8,12 +8,15 @@ export default function WorkList({ useLang, work }) {
   // console.log(filteredCat);
   const router = useRouter();
   const isActive = (href) => router.asPath === href;
-  //   console.log(router.asPath);
+
+  // console.log("isActive, ", isActive);
+  // console.log("router.asPath", router.asPath);
+
   return (
     <Box>
       {work.map((w, idx) => (
         <Box key={idx} sx={{ borderBottom: "1px solid #fff" }}>
-          <Link href={`/works/${w.work_id}`} as={`/works/${w.work_id}`}>
+          <Link href={`/works/${w.work_id}`} as={`/works/${w.work_id}`} push>
             <MenuItem
               disableGutters={true}
               sx={{ paddingTop: 0, paddingBottom: 0 }}
@@ -29,7 +32,12 @@ export default function WorkList({ useLang, work }) {
                   paddingBottom: "18px",
                   letterSpacing: "-0.01em",
                 }}
-                className={isActive(`/works/${w.work_id}`) ? "active" : ""}
+                // className={isActive(`/works/${w.work_id}`) ? "active" : ""}
+                style={
+                  isActive(`/works/${w.work_id}`)
+                    ? { color: "#FF2E00" }
+                    : { color: "#fff" }
+                }
               >
                 {useLang ? w.work_zh.title : w.work_en.title}
               </Box>

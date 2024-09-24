@@ -1,0 +1,82 @@
+.info_title{
+    font-size: 50px;
+    /* font-family: 'GenWanMin TW R'; */
+    letter-spacing: -0.1em;
+    position: relative;
+    margin-top: -13px;
+    width: fit-content;
+  }
+  
+  .info_title_en{
+    font-size: 50px;
+    /* font-family: 'Sanchez'; */
+    letter-spacing: -0.01em;
+    position: relative;
+    margin-top: -11px;
+    margin-bottom: 80px;
+    width: fit-content;
+  }
+  
+  .info_textBlk{
+    margin-bottom: 30px;
+  }
+  .info_textBlk_sp{
+    margin-bottom: 30px;
+    margin-top: -80px;
+  }
+  
+  .info_text_small{
+    /* font-family: 'Sanchez'; */
+    font-style: normal;  
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 135%;
+    letter-spacing: -0.025em;
+    margin-bottom: 15px;
+  }
+  
+  .info_text_medium{
+    /* font-family: 'Sanchez'; */
+    font-style: normal;  
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.025em;
+    margin-bottom: 15px;
+  }
+  
+  .info_text_big{
+    /* font-family: 'Sanchez'; */
+    font-style: normal;  
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 135%;
+    letter-spacing: -0.025em;
+    margin-bottom: 15px;
+  }
+  .mapBlk{
+    width: 95vw;
+    margin: 80px auto;
+    mix-blend-mode: darken;
+    
+  }
+  
+  @media screen and (max-width: 1280px) {
+    .info_title{
+      position: relative;
+    }
+    .info_title_en{
+      position: relative;
+      margin-bottom: 80px;
+    }
+  }
+  
+  @media screen and (max-width: 810px) {
+  
+    
+  }
+  
+  @media screen and (max-width: 680px) {
+    
+  }
+  

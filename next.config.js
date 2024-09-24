@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   transpilePackages: ['three'],
   env: {
     UNZIP_URL: process.env.UNZIP_URL,

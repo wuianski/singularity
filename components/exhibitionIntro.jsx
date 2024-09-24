@@ -28,7 +28,8 @@ export default function ExhibitionIntro({ useLang }) {
                 paddingTop: "30px",
                 paddingBottom: "18px",
               }}
-              className={isActive(`/`) ? "active " : ""}
+              // className={isActive(`/`) ? "active " : ""}
+              style={isActive(`/`) ? { color: "#FF2E00" } : { color: "#fff" }}
             >
               {/* {useLang ? <Box>影片</Box> : <Box>Video</Box>} */}
               {useLang ? <Box>展覽簡介</Box> : <Box>Introduction</Box>}

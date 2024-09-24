@@ -33,8 +33,13 @@ export default function WventList({ useLang, eventData }) {
                   paddingBottom: "18px",
                   letterSpacing: "-0.01em",
                 }}
-                className={
-                  isActive(`/events/${event.activity_id}`) ? "active" : ""
+                // className={
+                //   isActive(`/events/${event.activity_id}`) ? "active" : ""
+                // }
+                style={
+                  isActive(`/events/${event.activity_id}`)
+                    ? { color: "#FF2E00" }
+                    : { color: "#fff" }
                 }
               >
                 {useLang ? event.title_zh : event.title_en}
