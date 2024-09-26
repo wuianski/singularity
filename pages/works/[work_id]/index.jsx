@@ -247,7 +247,9 @@ export default function Work({ useLang, data }) {
                       </Box>
                     ))}
                 </Box>
-                <Box> {data.work_en.dimension}</Box>
+                <Box>
+                  {useLang ? data.work_zh.dimension : data.work_en.dimension}
+                </Box>
               </Item>
               <Item
                 sx={{

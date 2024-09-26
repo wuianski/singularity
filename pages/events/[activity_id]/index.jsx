@@ -2,6 +2,7 @@
 import { Box, Paper, Stack, styled } from "@mui/material";
 /* Fetch data */
 import { UNZIP_API } from "@/lib/api";
+import { use } from "react";
 
 /* Item */
 const Item = styled(Paper)(({ theme }) => ({
@@ -104,8 +105,9 @@ export default function Event({ useLang, data }) {
               </Box>
             ))}
         </Box>
+
         {/* Intro */}
-        <Box pb={1} sx={{ fontSize: 26, fontWeight: 600, lineHeight: 1.2 }}>
+        <Box pb={2} sx={{ fontSize: 26, fontWeight: 600, lineHeight: 1.2 }}>
           {useLang ? (
             <Box dangerouslySetInnerHTML={{ __html: data.introduction_zh }} />
           ) : (
@@ -126,6 +128,22 @@ export default function Event({ useLang, data }) {
           <Box sx={{ display: { xs: "block", md: "none" } }}>
             {useLang ? data.location_zh : data.location_en}
           </Box>
+        </Box>
+        {/* Sign up */}
+        <Box pt={2}>
+          {useLang ? (
+            <a href={data.registration_url} target="_blank">
+              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#FF2E00" }}>
+                報名
+              </Box>
+            </a>
+          ) : (
+            <a href={data.registration_url} target="_blank">
+              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#FF2E00" }}>
+                Sign up
+              </Box>
+            </a>
+          )}
         </Box>
       </Box>
     </>
