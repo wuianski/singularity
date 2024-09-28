@@ -10,10 +10,23 @@ export default function Home({ useLang, data }) {
     <Box>
       <Box sx={{ width: "100%", height: { xs: 200, md: "20vw" } }}>
         <ReactPlayer
+          config={{
+            youtube: {
+              playerVars: {
+                showinfo: 1,
+                enablejsapi: 1,
+                origin: "https://www.youtube.com",
+              },
+            },
+          }}
           width="100%"
           height="100%"
-          url="https://youtu.be/2xfT2IAykzo?si=pWuzHO7b2OKrn4st"
+          url="https://youtu.be/qU9e4Gv8cEM?si=BWQcrzLTfjnKxm3o"
           controls={true}
+          playsinline={true}
+          muted={true}
+          playing={true}
+          // onReady={() => console.log("onReady")}
         />
       </Box>
       <Box pt={5.5}>

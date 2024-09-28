@@ -57,6 +57,7 @@ export default function Background() {
           fill
           alt="Picture of the author"
           style={{ objectFit: "cover", objectPosition: "top right" }}
+          size="large"
         />
       </Box>
     </>
