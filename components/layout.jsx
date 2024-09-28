@@ -28,8 +28,11 @@ import PropTypes from "prop-types";
 /* Next */
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 /* Framer Motion */
 import { motion } from "framer-motion";
+/* */
+import { scrollIntoView } from "seamless-scroll-polyfill";
 
 /* Shader */
 function ShaderPlane({ mousePosition }) {
@@ -147,7 +150,23 @@ const StyledTab = styled((props) => <Tab {...props} />)(({ theme }) => ({
   letterSpacing: "-0.01em",
 }));
 
+/*************/
+/*** delay ***/
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default function Layout({ children, useLang, setLang }) {
+  /***********************************************************************/
+  /*** use router.query to get value from router.push in nav component ***/
+  // const [eventTab, setEventTab] = useState(false);
+  const router = useRouter();
+  const myChapter = router.query.chapter;
+  const myWork = router.query.work;
+  // console.log("myChapter", parseInt(myChapter));
+  // console.log("myWork", myWork);
+
+  /*** use router.query to get value from router.push in nav component ***/
+  /***********************************************************************/
+
   /* Mouse Position */
   const mousePosition = useMousePosition();
   //console.log(useLang);
@@ -156,9 +175,65 @@ export default function Layout({ children, useLang, setLang }) {
   const [isLoadingCat, setLoadingCat] = useState(true);
   /* Tab's value */
   const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => {
+  const handleChange = async (event, newValue) => {
+    // console.log("newValue", newValue);
     setValue(newValue);
+    await delay(500);
+    if (newValue && newValue == 1) {
+      scrollIntoView(document.getElementById("panel_conainer_1"), {
+        behavior: "auto",
+        block: "start",
+        inline: "start",
+      });
+    } else if (
+      (newValue && newValue === 2) ||
+      newValue === 3 ||
+      newValue === 4
+    ) {
+      scrollIntoView(document.getElementById("panel_conainer_2-4"), {
+        behavior: "auto",
+        block: "start",
+        inline: "start",
+      });
+    } else if (newValue && newValue === 5) {
+      scrollIntoView(document.getElementById("panel_conainer_5"), {
+        behavior: "auto",
+        block: "start",
+        inline: "start",
+      });
+    }
+    // scrollIntoView(document.getElementById("panel_conainer"), {
+    //   behavior: "auto",
+    //   block: "start",
+    //   inline: "start",
+    // });
+    // if (myWork && myChapter == newValue) {
+    //   scrollIntoView(document.getElementById(`${myWork}`), {
+    //     behavior: "auto",
+    //     block: "start",
+    //     inline: "start",
+    //   });
+    // }
   };
+
+  // useEffect(() => {
+  //   if (myChapter) {
+  //     const switchToEvent = async () => {
+  //       await delay(1000);
+  //       console.log("myWork", myWork);
+  //       // setValue(myChapter);
+
+  //       await delay(1000);
+  //       scrollIntoView(document.getElementById(`${myWork}`), {
+  //         behavior: "auto",
+  //         block: "start",
+  //         inline: "start",
+  //       });
+  //     };
+  //     switchToEvent();
+  //   }
+  // }, [myChapter, myWork]);
+
   /* Client fetch work1 */
   const [work1, setWork1] = useState(null);
   const [isLoadingWork1, setLoadingWork1] = useState(true);
@@ -450,20 +525,20 @@ export default function Layout({ children, useLang, setLang }) {
   return (
     <>
       {/* Background Shader */}
-      <motion.div custom={0} variants={bg} initial="hidden" animate="visible">
-        <Box
-          sx={{
-            position: "absolute",
-            zIndex: 1,
-            width: "100vw",
-            height: "100vh",
-          }}
-        >
-          <Canvas>
-            <ShaderPlane mousePosition={mousePosition} />
-          </Canvas>
-        </Box>
-      </motion.div>
+      {/* <motion.div custom={0} variants={bg} initial="hidden" animate="visible"> */}
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: 1,
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Canvas>
+          <ShaderPlane mousePosition={mousePosition} />
+        </Canvas>
+      </Box>
+      {/* </motion.div> */}
 
       {/* Background Image + Text */}
       <motion.div custom={1} variants={bg} initial="hidden" animate="visible">
@@ -552,6 +627,7 @@ export default function Layout({ children, useLang, setLang }) {
                   pl={1}
                   pr={1}
                   sx={{ height: "100%", overflowY: "auto" }}
+                  // id="tabPanel-container"
                 >
                   <TabPanel value={value} index={0}>
                     <ExhibitionIntro useLang={useLang} />
@@ -561,28 +637,28 @@ export default function Layout({ children, useLang, setLang }) {
                       useLang={useLang}
                       filteredCat={filteredCat[0]}
                     />
-                    <WorkList useLang={useLang} work={work1} />
+                    <WorkList useLang={useLang} work={work1} chapter={1} />
                   </TabPanel>
                   <TabPanel value={value} index={2}>
                     <ChapterIntro
                       useLang={useLang}
                       filteredCat={filteredCat[1]}
                     />
-                    <WorkList useLang={useLang} work={work2} />
+                    <WorkList useLang={useLang} work={work2} chapter={2} />
                   </TabPanel>
                   <TabPanel value={value} index={3}>
                     <ChapterIntro
                       useLang={useLang}
                       filteredCat={filteredCat[2]}
                     />
-                    <WorkList useLang={useLang} work={work3} />
+                    <WorkList useLang={useLang} work={work3} chapter={3} />
                   </TabPanel>
                   <TabPanel value={value} index={4}>
                     <ChapterIntro
                       useLang={useLang}
                       filteredCat={filteredCat[3]}
                     />
-                    <WorkList useLang={useLang} work={work4} />
+                    <WorkList useLang={useLang} work={work4} chapter={4} />
                   </TabPanel>
                   <TabPanel value={value} index={5}>
                     <EventList useLang={useLang} eventData={eventData} />

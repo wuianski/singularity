@@ -24,7 +24,7 @@ export default function ChapterIntro1({ useLang, filteredCat }) {
   // console.log("router.asPath", router.asPath);
 
   return (
-    <Box sx={{ borderBottom: "1px solid #fff" }}>
+    <Box sx={{ borderBottom: "1px solid #fff" }} id="panel_conainer_1">
       <Link
         href={`/chapters/${filteredCat.id}`}
         as={`/chapters/${filteredCat.id}`}

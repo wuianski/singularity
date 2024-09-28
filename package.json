@@ -21,6 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-player": "^2.16.0",
+    "seamless-scroll-polyfill": "^2.3.4",
     "sharp": "^0.33.5",
     "three": "^0.168.0"
   },

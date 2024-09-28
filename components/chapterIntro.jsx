@@ -34,7 +34,7 @@ const chapterIntroText = [
 
 export default function ChapterIntro({ useLang, filteredCat }) {
   return (
-    <Box sx={{ borderBottom: "1px solid #fff" }}>
+    <Box sx={{ borderBottom: "1px solid #fff" }} id="panel_conainer_2-4">
       <Box
         sx={{
           lineHeight: 1.25,

@@ -1,8 +1,13 @@
+import { useState, useEffect } from "react";
 /* MUI */
 import { Box, Paper, Stack, styled } from "@mui/material";
 /* Fetch data */
 import { UNZIP_API } from "@/lib/api";
 import { use } from "react";
+/* Next */
+import { useRouter } from "next/router";
+/* Seamless scroll polyfill */
+import { scrollIntoView } from "seamless-scroll-polyfill";
 
 /* Item */
 const Item = styled(Paper)(({ theme }) => ({
@@ -14,12 +19,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Event({ useLang, data }) {
-  console.log(data.start_date);
+  // console.log(data.start_date);
   const dayNames = ["Sun.", "Mon.", "Tue.", "Wed.", "Thur.", "Fri.", "Sat."];
+  const router = useRouter();
+
+  useEffect(() => {
+    scrollIntoView(document.getElementById("event_container"), {
+      behavior: "auto",
+      block: "start",
+      inline: "start",
+    });
+  }, [router]);
 
   return (
     <>
-      <Box pt={8} pb={3} pl={2} pr={2}>
+      <Box pt={8} pb={3} pl={2} pr={2} id="event_container">
         {/* Time */}
         <Box pb={1} pt={4} sx={{ borderTop: "solid 1px #FF2E00" }}>
           {data.activity_sessions &&

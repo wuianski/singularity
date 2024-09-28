@@ -7,8 +7,10 @@ import Image from "next/image";
 /* Keen Slider */
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-
+/* Next */
 import { useRouter } from "next/router";
+/* Seamless scroll polyfill */
+import { scrollIntoView } from "seamless-scroll-polyfill";
 
 /* Item */
 const Item = styled(Paper)(({ theme }) => ({
@@ -43,7 +45,7 @@ function Arrow(props) {
 
 export default function Work({ useLang, data }) {
   const router = useRouter();
-  // console.log(router.query.work_id);
+  // console.log(router.query);
   const images = [
     {
       image: data.photo_1
@@ -113,12 +115,17 @@ export default function Work({ useLang, data }) {
 
   useEffect(() => {
     instanceRef.current?.moveToIdx(0);
+    scrollIntoView(document.getElementById("work_container"), {
+      behavior: "auto",
+      block: "start",
+      inline: "start",
+    });
   }, [router]);
 
   return (
     <>
       {/* artwork slider */}
-      <Box>
+      <Box id="work_container">
         <div ref={sliderRef} className="keen-slider">
           {newImages.map((src, idx) => (
             <div key={idx} className="keen-slider__slide lazy__slide">
