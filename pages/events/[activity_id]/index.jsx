@@ -35,7 +35,7 @@ export default function Event({ useLang, data }) {
     <>
       <Box pt={8} pb={3} pl={2} pr={2} id="event_container">
         {/* Time */}
-        <Box pb={1} pt={4} sx={{ borderTop: "solid 1px #FF2E00" }}>
+        <Box pb={1} pt={4} sx={{ borderTop: "solid 1px #434AD2" }}>
           {data.activity_sessions &&
             data.activity_sessions.map((as, index) => (
               <Box key={index}>
@@ -45,7 +45,7 @@ export default function Event({ useLang, data }) {
                       width: "30%",
                       fontSize: 26,
                       fontWeight: 600,
-                      color: "#FF2E00",
+                      color: "#434AD2",
                     }}
                   >
                     <Box>{dayNames[new Date(as.start_time).getDay()]}</Box>
@@ -55,7 +55,7 @@ export default function Event({ useLang, data }) {
                       width: "35%",
                       fontSize: 26,
                       fontWeight: 600,
-                      color: "#FF2E00",
+                      color: "#434AD2",
                     }}
                   >
                     <Box component="span">
@@ -89,7 +89,7 @@ export default function Event({ useLang, data }) {
                       width: { xs: "100%", md: "35%" },
                       fontSize: 26,
                       fontWeight: 600,
-                      color: "#FF2E00",
+                      color: "#434AD2",
                       textAlign: { xs: "left", md: "right" },
                     }}
                   >
@@ -130,7 +130,7 @@ export default function Event({ useLang, data }) {
         </Box>
         {/* Location */}
         <Box sx={{ fontSize: 20, fontWeight: 600 }}>
-          <Box component="span" pr={2} sx={{ color: "#FF2E00" }}>
+          <Box component="span" pr={2} sx={{ color: "#434AD2" }}>
             {useLang ? "地點" : "Location"}
           </Box>
           <Box
@@ -147,13 +147,13 @@ export default function Event({ useLang, data }) {
         <Box pt={2}>
           {useLang ? (
             <a href={data.registration_url} target="_blank">
-              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#FF2E00" }}>
+              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#434AD2" }}>
                 報名
               </Box>
             </a>
           ) : (
             <a href={data.registration_url} target="_blank">
-              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#FF2E00" }}>
+              <Box sx={{ fontSize: 20, fontWeight: 600, color: "#434AD2" }}>
                 Sign up
               </Box>
             </a>

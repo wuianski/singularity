@@ -45,7 +45,7 @@ export default function ChapterIntro1({ useLang, filteredCat }) {
             }}
             style={
               router.asPath == "/chapters/1"
-                ? { color: "#FF2E00" }
+                ? { color: "#434AD2" }
                 : { color: "#fff" }
             }
           >

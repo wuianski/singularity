@@ -261,8 +261,8 @@ export default function Work({ useLang, data }) {
               <Item
                 sx={{
                   width: { xs: "100%", md: "50%" },
-                  borderLeft: ".5px solid #FF2E00",
-                  color: "#FF2E00",
+                  borderLeft: ".5px solid #434AD2",
+                  color: "#434AD2",
                 }}
               >
                 {useLang ? data.location.name_zh : data.location.name_en}

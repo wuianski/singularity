@@ -11,10 +11,10 @@ import map from "../public/imgs/map.png";
 
 const Item = styled(Paper)(({ theme }) => ({
     borderRadius: 0,
-    backgroundColor: "#ff0000",
+    backgroundColor: "#00FF66",
     padding: theme.spacing(1),
     textAlign: "left",
-    color: "#ooo",
+    color: "#434AD2",
     boxShadow: "none",
     width: "90%",
 }));

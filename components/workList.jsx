@@ -41,7 +41,7 @@ export default function WorkList({ useLang, work, chapter }) {
                 // className={isActive(`/works/${w.work_id}`) ? "active" : ""}
                 style={
                   isActive(`/works/${w.work_id}`)
-                    ? { color: "#FF2E00" }
+                    ? { color: "#434AD2" }
                     : { color: "#fff" }
                 }
                 id={w.work_id}

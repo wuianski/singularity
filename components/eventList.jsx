@@ -38,7 +38,7 @@ export default function WventList({ useLang, eventData }) {
                 // }
                 style={
                   isActive(`/events/${event.activity_id}`)
-                    ? { color: "#FF2E00" }
+                    ? { color: "#434AD2" }
                     : { color: "#fff" }
                 }
               >

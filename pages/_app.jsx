@@ -10,11 +10,15 @@ import Modal from "@mui/material/Modal";
 import styles from "@/components/InfoModal.module.css";
 import Fade from "@mui/material/Fade";
 import Image from "next/image";
-import closeIcon from "@/public/close_icon.jpg";
+import closeIcon from "@/public/close.png";
+import infoIcon from "@/public/info.png";
+import langIcon from "@/public/lang.png";
 /* Framer Motion */
 import { AnimatePresence, motion } from "framer-motion";
 import { line } from "framer-motion/client";
 import zIndex from "@mui/material/styles/zIndex";
+/** next-seo **/
+import { DefaultSeo } from "next-seo";
 
 export default function App({ Component, pageProps, router }) {
   const [useLang, setLang] = useState(true);
@@ -33,6 +37,19 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
+      <DefaultSeo
+        title="奇異點 Sigularity"
+        description="2024未來媒體藝術節──奇異點 | 2024 Future Media FEST-Singularity"
+        canonical="https://2024fmf.clab.org.tw/"
+        openGraph={{
+          type: "website",
+          url: "https://2024fmf.clab.org.tw/",
+          site_name: "奇異點 Sigularity",
+          title: "奇異點 Sigularity",
+          description:
+            "2024未來媒體藝術節──奇異點 | 2024 Future Media FEST-Singularity",
+        }}
+      />
       <Box
         sx={{
           position: "fixed",
@@ -49,53 +66,103 @@ export default function App({ Component, pageProps, router }) {
           textAlign: "center",
         }}
       >
-        <Box
-          onClick={() => setLang(false)}
-          style={useLang == false ? { color: "#FF2E00" } : { color: "#fff" }}
-          sx={{ display: { xs: "none", sm: "block" } }}
-        >
-          EN
+        {/* desktop */}
+        <Box>
+          <Box
+            sx={{
+              position: "absolute",
+              zIndex: 1001,
+              display: { xs: "none", sm: "block" },
+            }}
+          >
+            <Image
+              src={langIcon}
+              alt="Icon of close modal"
+              width={73}
+              height={73}
+            />
+          </Box>
+          <Box
+            sx={{
+              position: "relative",
+              zIndex: 1002,
+              left: 10,
+              top: 10,
+              display: { xs: "none", sm: "block" },
+            }}
+          >
+            <Box
+              onClick={() => setLang(false)}
+              style={
+                useLang == false ? { color: "#434AD2" } : { color: "#fff" }
+              }
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              EN
+            </Box>
+
+            <Box
+              onClick={() => setLang(true)}
+              style={useLang == true ? { color: "#434AD2" } : { color: "#fff" }}
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              TW
+            </Box>
+          </Box>
+          <Box
+            pt={3}
+            sx={{ display: { xs: "none", sm: "block" } }}
+            onClick={handleOpenDrawer}
+          >
+            <Image
+              src={infoIcon}
+              alt="Icon of close modal"
+              width={73}
+              height={73}
+            />
+          </Box>
         </Box>
-        <Box
-          onClick={() => setLang(false)}
-          style={useLang == false ? { color: "#FF2E00" } : { color: "#fff" }}
-          sx={{ display: { xs: "inline", sm: "none" } }}
-          component="span"
-          pr={1}
-        >
-          EN
+        {/* mobile */}
+        <Box pt={0.2}>
+          <Box
+            onClick={() => setLang(false)}
+            style={useLang == false ? { color: "#434AD2" } : { color: "#fff" }}
+            sx={{ display: { xs: "inline", sm: "none" } }}
+            component="span"
+            // pr={1}
+          >
+            EN
+          </Box>
+          <Box
+            onClick={() => setLang(true)}
+            style={useLang == true ? { color: "#434AD2" } : { color: "#fff" }}
+            sx={{ display: { xs: "inline", sm: "none" }, marginTop: "-20px" }}
+            component="span"
+            pl={1}
+            pr={1}
+          >
+            TW
+          </Box>
+          <Box
+            component="span"
+            // pl={0.5}
+            sx={{ display: { xs: "inline", sm: "none" }, top: 1 }}
+            position="absolute"
+            onClick={handleOpenDrawer}
+          >
+            <Image
+              src={infoIcon}
+              alt="Icon of close modal"
+              width={20}
+              height={20}
+            />
+          </Box>
         </Box>
-        <Box sx={{ cursor: "initial", display: "inline" }} component="span">
-          /
-        </Box>
-        <Box
-          onClick={() => setLang(true)}
-          style={useLang == true ? { color: "#FF2E00" } : { color: "#fff" }}
-          sx={{ display: { xs: "none", sm: "block" } }}
-        >
-          繁
-        </Box>
-        <Box
-          onClick={() => setLang(true)}
-          style={useLang == true ? { color: "#FF2E00" } : { color: "#fff" }}
-          sx={{ display: { xs: "inline", sm: "none" }, marginTop: "-20px" }}
-          component="span"
-          pl={1}
-          pr={1}
-        >
-          繁
-        </Box>
-        <Box
-          pt={3}
-          sx={{ display: { xs: "none", sm: "block" } }}
-          onClick={handleOpenDrawer}
-        >
-          <InfoIcon />
-        </Box>
+
         <Modal open={openDrawer} onClose={handleCloseDrawer}>
           <Box
             sx={{
-              backgroundColor: "#ff0000",
+              backgroundColor: "#00FF66",
               position: "fixed",
               top: "50%",
               left: "50%",
@@ -132,15 +199,6 @@ export default function App({ Component, pageProps, router }) {
             </Fade>
           </Box>
         </Modal>
-        <Box
-          component="span"
-          pl={0.5}
-          sx={{ display: { xs: "inline", sm: "none" }, top: -1 }}
-          position="absolute"
-          onClick={handleOpenDrawer}
-        >
-          <InfoIcon />
-        </Box>
       </Box>
 
       <Layout useLang={useLang} setLang={setLang}>

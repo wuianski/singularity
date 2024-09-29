@@ -27,10 +27,10 @@ a {
 /* Keen Slider lazy loading */
 .lazy__slide {
   height: min-content;
-  background:#FF2E00;
+  background:#434AD2;
   /* background-color: linear-gradient(
     0deg,
-    #FF2E00 0%,
+    #434AD2 0%,
     rgba(255, 154, 63, 1) 100%
   ); */
   background-image: url("/loader.svg");

@@ -133,7 +133,7 @@ const StyledTab = styled((props) => <Tab {...props} />)(({ theme }) => ({
   fontWeight: 600,
   color: "#fff",
   "&.Mui-selected": {
-    color: "#FF2E00",
+    color: "#434AD2",
   },
   //   "&.Mui-focusVisible": {
   //     backgroundColor: "rgba(100, 95, 228, 0.32)",

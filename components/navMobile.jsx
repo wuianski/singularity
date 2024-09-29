@@ -13,6 +13,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { color } from "framer-motion";
+import { b } from "framer-motion/client";
 
 export default function NavMobile({
   useLang,
@@ -47,7 +49,7 @@ export default function NavMobile({
 
   const DrawerList = (
     <Box
-      sx={{ width: "80vw" }}
+      sx={{ width: "80vw", color: "#fff", backgroundColor: "#000" }}
       role="presentation"
       onClick={toggleDrawer(false)}
     >
@@ -68,7 +70,7 @@ export default function NavMobile({
           </ListItemButton>
         </ListItem> */}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "#888" }} />
       <List>
         <ListItem disablePadding>
           <ListItemButton>
@@ -100,7 +102,7 @@ export default function NavMobile({
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "#888" }} />
       <List>
         <ListItem disablePadding>
           <ListItemButton>
@@ -132,7 +134,7 @@ export default function NavMobile({
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "#888" }} />
       <List>
         <ListItem disablePadding>
           <ListItemButton>
@@ -164,7 +166,7 @@ export default function NavMobile({
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "#888" }} />
       <List>
         <ListItem disablePadding>
           <ListItemButton>
@@ -196,7 +198,7 @@ export default function NavMobile({
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "#888" }} />
       <List>
         {eventData.results.map((event, index) => (
           <ListItem key={index} disablePadding>
