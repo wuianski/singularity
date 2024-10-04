@@ -175,7 +175,7 @@ export default function InfoModal() {
                     <div className={styles.info_text_small}>主辦單位 Organizer ｜C-LAB 當代藝術實驗平台</div>
                     <div className={styles.info_text_small}>合作單位 Collaborator ｜  ACC, ELEKTRA,  Giloo紀實影音, Goethe-Institut,  MOONSHINE 夢想動畫 , N-MOTION VISUAL, NIHO, SFAC, TKG+, VISION BASE,    </div>
                     <div className={styles.info_text_small}>特別感謝｜臺灣聲響實驗室</div>
-                    <div className={styles.info_text_small}>贊助單位 Sponsor｜ SamSung</div>
+                    <div className={styles.info_text_small}>贊助單位 Sponsor｜ Samsung</div>
                 </Item>
             </Stack>
 

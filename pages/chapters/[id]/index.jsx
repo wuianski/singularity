@@ -54,27 +54,21 @@ export default function Chapter({ useLang }) {
     <Box pt={8} pl={2} pr={2}>
       {id === "1" ? (
         <>
-          <Box sx={{ whiteSpace: "normal", lineHeight: 1.56 }}>
+          {/* <Box sx={{ whiteSpace: "normal", lineHeight: 1.56 }}>
             {useLang ? (
               <Box>
-                {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
-                {chapterIntroText[0].title_zh}
-              </Box> */}
                 <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                   {chapterIntroText[0].content_zh}
                 </Box>
               </Box>
             ) : (
               <Box>
-                {/* <Box pb={3} sx={{ fontSize: 20, fontWeight: 600 }}>
-                {chapterIntroText[0].title_en}
-              </Box> */}
                 <Box pb={2} sx={{ fontSize: 20, fontWeight: 500 }}>
                   {chapterIntroText[0].content_en}
                 </Box>
               </Box>
             )}
-          </Box>
+          </Box> */}
           {/* 研究內容 */}
 
           <Box
@@ -89,32 +83,30 @@ export default function Chapter({ useLang }) {
               <Box pb={2} sx={{ fontSize: 16 }}>
                 <Box pb={2}>
                   關於 AI
-                  發展的歷史分期有諸多說法,但大多起始於第二次世界大戰之後。 1956
-                  年, 約 翰. 麥 卡 錫(John MCCARTHY) 在 達 特 茅 斯 學
-                  院(Dartmouth College)的一場會議上提出「Artificial
-                  Intelligence」一詞,標誌著 AI 研究的 誕生。1960 年代,早期 AI 如
-                  ELIZA 模擬心理治療師對話,展現了 AI 的潛力。 但到了 1970
-                  年代,由於技術限制和資金減少,進入了所謂的「AI 寒冬」。
+                  發展的歷史分期有諸多說法，但大多起始於第二次世界大戰之後。1956
+                  年， 約翰． 麥卡錫（John MCCARTHY） 在達特茅斯 院（Dartmouth
+                  College）的一場會議上提出「Artificial
+                  Intelligence」一詞，標誌著 AI 研究的誕生。1960 年代，早期 AI
+                  如 ELIZA 模擬心理治療師對話，展現了 AI 的潛力。但到了 1970
+                  年代，由於技術限制和資金減少，進入了所謂的「AI 寒冬」。 
                 </Box>
                 <Box pb={2}>
-                  隨 著 IBM 的 深 藍 超 級 電 腦 在 1997 年 擊 敗 西 洋 棋 冠 軍
-                  卡 斯 巴 洛 夫(Garry KASPAROV),AI 又回到大眾的視野;2010
-                  年代,深度學習技術推動了 AI 的巨 大進步,2016 年 AlphaGo
-                  擊敗圍棋世界冠軍李世乭,標誌著深度學習的成熟。 進入 2020
-                  年代,AI 技術在自然語言處理和圖像生成方面取得重大突破,誕生了
-                  大型語言模型如 GPT-3。生成式人工智慧 GAI(Generative
-                  AI)則可生成逼真的 圖像、影片和音樂等文本,GAI
-                  有望在更多領域發揮作用,從創意產業到科學研
-                  究,繼續改變我們的生活和工作方式。
+                  隨著 IBM 的深藍超級電腦在 1997
+                  年擊敗西洋棋冠軍卡斯巴洛夫（Garry KASPAROV），AI
+                  又回到大眾的視野；2010 年代，深度學習技術推動了 AI
+                  的巨大進步，2016 年 AlphaGo
+                  擊敗圍棋世界冠軍李世乭，標誌著深度學習的成熟。進入 2020
+                  年代，AI
+                  技術在自然語言處理和圖像生成方面取得重大突破，誕生了大型語言模型如
+                  GPT-3。生成式人工智慧 GAI（Generative
+                  AI）則可生成逼真的圖像、影片和音樂等文本，GAI
+                  有望在更多領域發揮作用，從創意產業到科學研究，繼續改變我們的生活和工作方式。 
                 </Box>
                 <Box pb={2}>
-                  在本次計畫中,我們重點轉譯了科學研究與技術史的龐大內容,以關鍵的技術突
-                  破與相關事件為核心,在各個時期從「AI
-                  發展」(軟體與演算法為主)、「世
-                  界史」(例如繪圖晶片量產、戰爭等事件)與「文化與藝術」(包括文學、藝術、
-                  大眾文化中的 AI 形象)三個層面平行呈現在不同階段 AI
-                  演進同時的全球政治經
-                  濟與文化狀態,邀請觀眾從自己較為熟悉的面向找到閱讀的入口。
+                  在本次計畫中，我們重點轉譯了科學研究與技術史的龐大內容，以關鍵的技術突破與相關事件為核心，在各個時期從「AI
+                  發展」（軟體與演算法為主）、「世界史」（例如繪圖晶片量產、戰爭等事件）與「文化與藝術」（包括文學、藝術、大眾文化中的
+                  AI 形象）三個層面平行呈現在不同階段 AI
+                  演進同時的全球政治經濟與文化狀態，邀請觀眾從自己較為熟悉的面向找到閱讀的入口。
                 </Box>
               </Box>
             ) : (
@@ -217,9 +209,7 @@ export default function Chapter({ useLang }) {
                   {useLang ? (
                     <Box>
                       自牧文化創立於 2022
-                      年,關注數位時代的文化研究、影像理論與藝術創作。致
-                      力於譯介、製作相關的出版與展覽等多型態計畫。本次研究計畫由獨立策展人李
-                      佳霖與藝術家/研究者蔡侑霖共同執行。
+                      年，關注數位時代的文化研究、影像理論與藝術創作。致力於譯介、製作相關的出版與展覽等多型態計畫。本次研究計畫由獨立策展人李佳霖與藝術家／研究者蔡侑霖共同執行。 
                     </Box>
                   ) : (
                     <Box>
