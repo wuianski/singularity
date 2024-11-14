@@ -21,7 +21,8 @@ export default function Home({ useLang, data }) {
           }}
           width="100%"
           height="100%"
-          url="https://youtu.be/qU9e4Gv8cEM?si=BWQcrzLTfjnKxm3o"
+          // url="https://youtu.be/qU9e4Gv8cEM?si=BWQcrzLTfjnKxm3o"
+          url="https://youtu.be/RVPyMTgNOME?si=hjQcAYVpcxFbZNnb"
           controls={true}
           playsinline={true}
           muted={true}
